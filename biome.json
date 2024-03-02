@@ -7,17 +7,18 @@
   "files": {
     "ignoreUnknown": true,
     "ignore": [
-      "**/node_modules",
-      "**/.git",
-      "**/.pnp*",
-      "**/.tamagui",
-      "**/.next",
-      "**/dist",
-      "**/types",
-      "**/public",
-      "**/build",
-      "**/android",
-      "**/ios"
+      "./node_modules",
+      "./.git",
+      "./.pnp*",
+      "./.tamagui",
+      "./.next",
+      "./.expo",
+      "./dist",
+      "./types",
+      "./public",
+      "./build",
+      "./android",
+      "./ios"
     ]
   },
   "linter": {

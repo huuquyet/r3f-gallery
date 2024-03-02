@@ -10,7 +10,7 @@
     "eject": "expo eject",
     "doctor": "yarn dlx @yarnpkg/doctor && npx expo-doctor@latest",
     "ios": "expo run:ios",
-    "lint": "yarn dlx @biomejs/biome@1.4.1 check --apply .",
+    "lint": "yarn dlx @biomejs/biome check --apply .",
     "start": "expo start -c",
     "test": "jest --watchAll",
     "update": "yarn upgrade-interactive",
