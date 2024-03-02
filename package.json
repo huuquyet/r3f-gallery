@@ -1,15 +1,23 @@
 {
-  "name": "expo-router-example",
+  "name": "expo-tamagui",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
+    "android": "expo run:android",
+    "check": "expo install --check",
+    "clean": "yarn cache clean --all && git clean -xdf",
+    "eject": "expo eject",
+    "doctor": "yarn dlx @yarnpkg/doctor && npx expo-doctor@latest",
+    "ios": "expo run:ios",
+    "lint": "yarn dlx @biomejs/biome@1.4.1 check --apply .",
+    "start": "expo start -c",
+    "test": "jest --watchAll",
+    "update": "yarn upgrade-interactive",
     "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
     "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary",
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "test": "jest --watchAll"
+    "vscode": "yarn dlx @yarnpkg/sdks vscode",
+    "web": "expo start --web"
   },
   "jest": {
     "preset": "jest-expo"
@@ -41,8 +49,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
-    "@types/react": "~18.2.14"
+    "@biomejs/biome": "^1.5.3",
+    "@types/react": "~18.2.14",
+    "metro-config": "^0.80.6"
   },
-  "private": true,
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.0"
 }
