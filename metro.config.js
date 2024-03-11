@@ -4,7 +4,7 @@ const { getDefaultConfig } = require('expo/metro-config')
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname, {
   // [Web-only]: Enables CSS support in Metro.
-  isCSSEnabled: false,
+  isCSSEnabled: true,
 })
 
 // 2. Enable Tamagui
