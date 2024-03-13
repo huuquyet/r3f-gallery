@@ -21,6 +21,7 @@
     "@react-navigation/native": "^6.1.16",
     "@tamagui/config": "latest",
     "@tamagui/constants": "latest",
+    "@tamagui/font-inter": "latest",
     "@tamagui/metro-plugin": "latest",
     "expo": "^50.0.12",
     "expo-asset": "^9.0.2",
