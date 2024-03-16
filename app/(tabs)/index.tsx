@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, extend, useFrame } from '@react-three/fiber'
 import { Image, ScrollControls, useScroll, Billboard, Text } from '@react-three/drei'
-import { suspend } from 'suspend-react'
 import { generate } from 'random-words'
 import { easing, geometry } from 'maath'
 
@@ -61,7 +60,7 @@ function Cards({ category, data, from = 0, len = Math.PI * 2, radius = 5.25, onP
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
             hovered={hovered === i}
-            url={`/img${Math.floor(i % 10) + 1}.jpg`}
+            url={`../../assets/images/img${Math.floor(i % 56) + 1}.jpg`}
           />
         )
       })}

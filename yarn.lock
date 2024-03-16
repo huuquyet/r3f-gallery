@@ -8403,6 +8403,7 @@ __metadata:
     expo-router: "npm:^3.4.8"
     expo-status-bar: "npm:^1.11.1"
     jotai: "npm:^2.7.1"
+    maath: "npm:^0.10.7"
     metro: "npm:^0.80.6"
     random-words: "npm:^2.0.1"
     react: "npm:^18.2.0"
