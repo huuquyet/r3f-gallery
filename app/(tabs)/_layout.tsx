@@ -1,6 +1,7 @@
-import { Link, Tabs } from 'expo-router'
-import { Pressable } from 'react-native'
-import { Text } from 'tamagui'
+import { Tabs } from 'expo-router'
+import { useAtom } from 'jotai'
+import { Button, Text } from 'tamagui'
+import { themeWithToggle } from '../atoms/theme'
 
 export default function TabLayout() {
   return (
@@ -14,13 +15,7 @@ export default function TabLayout() {
         options={{
           title: 'Tab One',
           tabBarIcon: ({ color }) => <Text>Hello!</Text>,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                <Text>Hello!</Text>
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <ThemeButton />,
         }}
       />
       <Tabs.Screen
@@ -28,8 +23,20 @@ export default function TabLayout() {
         options={{
           title: 'Tab Two',
           tabBarIcon: ({ color }) => <Text>Hello!</Text>,
+          headerRight: () => <ThemeButton />,
         }}
       />
     </Tabs>
+  )
+}
+
+const ThemeButton = () => {
+  const themeAtom = themeWithToggle('dark')
+  const [theme, toggle] = useAtom(themeAtom)
+
+  return (
+    <Button onPress={() => toggle()}>
+      <Text>{theme}</Text>
+    </Button>
   )
 }

@@ -1,6 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
+import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
 import { TamaguiProvider } from 'tamagui'
@@ -42,7 +43,8 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const scheme = themeWithToggle('light' as mode)
+  const themeAtom = themeWithToggle('dark' as mode)
+  const [scheme] = useAtom(themeAtom)
 
   const current = () => {
     if (scheme === ('system' as mode)) {
