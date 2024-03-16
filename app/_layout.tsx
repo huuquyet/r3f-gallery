@@ -19,6 +19,8 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 }
 
+export const themeAtom = themeWithToggle('dark' as mode)
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
@@ -43,7 +45,6 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const themeAtom = themeWithToggle('dark' as mode)
   const [scheme] = useAtom(themeAtom)
 
   const current = () => {

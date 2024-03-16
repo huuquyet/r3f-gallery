@@ -1,7 +1,14 @@
+import { Monitor, Moon, Sun } from '@tamagui/lucide-icons'
 import { Tabs } from 'expo-router'
 import { useAtom } from 'jotai'
 import { Button, Text } from 'tamagui'
-import { themeWithToggle } from '../atoms/theme'
+import { themeAtom } from '../_layout'
+
+const icons = {
+  dark: <Moon />,
+  light: <Sun />,
+  system: <Monitor />,
+}
 
 export default function TabLayout() {
   return (
@@ -31,12 +38,7 @@ export default function TabLayout() {
 }
 
 const ThemeButton = () => {
-  const themeAtom = themeWithToggle('dark')
   const [theme, toggle] = useAtom(themeAtom)
 
-  return (
-    <Button onPress={() => toggle()}>
-      <Text>{theme}</Text>
-    </Button>
-  )
+  return <Button icon={icons[theme]} onPress={() => toggle()} circular />
 }
