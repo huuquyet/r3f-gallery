@@ -1,11 +1,12 @@
 import { ScrollControls, useScroll } from '@react-three/drei'
 import { Billboard, Image, Text } from '@react-three/drei/native'
 import { Canvas, extend, useFrame } from '@react-three/fiber/native'
+import { Asset } from 'expo-asset'
+import { THREE } from 'expo-three'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import * as THREE from 'three'
-import { ImageAssets } from '../imageAssets'
+import images from '../../assets/images'
 
 extend(geometry)
 
@@ -97,22 +98,28 @@ function Cards({
           {category}
         </Text>
       </Billboard>
-      {Array.from({ length: amount - 3 /* minus 3 images at the end, creates a gap */ }, (_, i) => {
-        const angle = from + (i / amount) * len
-        const imgIndex = `img${Math.floor(i % 56) + 1}`
-        return (
-          <Card
-            key={angle}
-            onPointerOver={(e) => (e.stopPropagation(), hover(i), onPointerOver(i))}
-            onPointerOut={() => (hover(null), onPointerOut(null))}
-            position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
-            rotation={[0, Math.PI / 2 + angle, 0]}
-            active={hovered !== null}
-            hovered={hovered === i}
-            url={ImageAssets[imgIndex]}
-          />
-        )
-      })}
+      {Array.from(
+        { length: amount - 3 /* minus 3 images at the end, creates a gap */ },
+        (_, i) => {
+          const angle = from + (i / amount) * len
+          const imgIndex = `img${Math.floor(i % 56) + 1}`
+          const asset = Asset.fromModule(images[imgIndex])
+          asset.downloadAsync()
+
+          return (
+            <Card
+              key={angle}
+              onPointerOver={(e) => (e.stopPropagation(), hover(i), onPointerOver(i))}
+              onPointerOut={() => (hover(null), onPointerOut(null))}
+              position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
+              rotation={[0, Math.PI / 2 + angle, 0]}
+              active={hovered !== null}
+              hovered={hovered === i}
+              url={asset.localUri}
+            />
+          )
+        }
+      )}
     </group>
   )
 }
@@ -131,7 +138,7 @@ function Card({ url, active, hovered, ...props }) {
   )
 }
 
-function ActiveCard({ hovered, ...props }) {
+async function ActiveCard({ hovered, ...props }) {
   const ref = useRef()
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => void (ref.current.material.zoom = 0.8), [hovered])
@@ -140,13 +147,15 @@ function ActiveCard({ hovered, ...props }) {
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
   const imgIndex = `img${Math.floor(hovered % 56) + 1}`
+  const asset = Asset.fromModule(images[imgIndex])
+  await asset.downloadAsync()
 
   return (
     <Billboard {...props}>
       <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="black">
         {hovered !== null && `${name}\n${hovered}`}
       </Text>
-      <Image ref={ref} transparent position={[0, 1.5, 0]} url={ImageAssets[imgIndex]}>
+      <Image ref={ref} transparent position={[0, 1.5, 0]} url={asset.localUri}>
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}
           args={[3.5, 1.618 * 3.5, 0.2]}

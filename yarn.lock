@@ -1152,6 +1152,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-object-assign@npm:^7.16.7":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-object-assign@npm:7.23.3"
+  dependencies:
+    "@babel/helper-plugin-utils": "npm:^7.22.5"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10/17b8da5fe6cabc9f01adae9d57ad5a232a7535007249d737de3a120c73c63c330588ca5592419083d2b55df04c49b193d1ef5dbf071933fea11ac05022fd8716
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-object-rest-spread@npm:^7.12.13, @babel/plugin-transform-object-rest-spread@npm:^7.24.0":
   version: 7.24.0
   resolution: "@babel/plugin-transform-object-rest-spread@npm:7.24.0"
@@ -1611,7 +1622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.13.0":
+"@babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.16.7":
   version: 7.23.3
   resolution: "@babel/preset-typescript@npm:7.23.3"
   dependencies:
@@ -3449,7 +3460,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/fiber@npm:8.15.19":
+"@react-three/fiber@npm:^8.15.19":
   version: 8.15.19
   resolution: "@react-three/fiber@npm:8.15.19"
   dependencies:
@@ -8491,7 +8502,7 @@ __metadata:
     "@pmndrs/assets": "npm:^1.6.0"
     "@react-navigation/native": "npm:^6.1.16"
     "@react-three/drei": "npm:^9.102.6"
-    "@react-three/fiber": "npm:8.15.19"
+    "@react-three/fiber": "npm:^8.15.19"
     "@react-three/postprocessing": "npm:^2.16.2"
     "@tamagui/config": "npm:latest"
     "@tamagui/constants": "npm:latest"
@@ -8513,9 +8524,10 @@ __metadata:
     maath: "npm:^0.10.7"
     metro: "npm:^0.80.6"
     random-words: "npm:^2.0.1"
-    react: "npm:18.2.0"
+    react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-native: "npm:0.73.5"
+    react-native-reanimated: "npm:~3.6.2"
     react-native-safe-area-context: "npm:4.8.2"
     react-native-svg: "npm:14.1.0"
     react-native-web: "npm:^0.19.10"
@@ -12637,6 +12649,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-reanimated@npm:~3.6.2":
+  version: 3.6.3
+  resolution: "react-native-reanimated@npm:3.6.3"
+  dependencies:
+    "@babel/plugin-transform-object-assign": "npm:^7.16.7"
+    "@babel/preset-typescript": "npm:^7.16.7"
+    convert-source-map: "npm:^2.0.0"
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.0.0-0
+    "@babel/plugin-proposal-optional-chaining": ^7.0.0-0
+    "@babel/plugin-transform-arrow-functions": ^7.0.0-0
+    "@babel/plugin-transform-shorthand-properties": ^7.0.0-0
+    "@babel/plugin-transform-template-literals": ^7.0.0-0
+    react: "*"
+    react-native: "*"
+  checksum: 10/34c0276131b1e604d8610299fa573caebfb9330cb1fa1c1c420a2d7620cfb464ed87597fa563623d4e24ae43d375b311c36cefac4920d4b85fbd4d17d02afe8c
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:4.8.2":
   version: 4.8.2
   resolution: "react-native-safe-area-context@npm:4.8.2"
@@ -12853,7 +12886,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0, react@npm:^18.2.0":
+"react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
