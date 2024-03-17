@@ -7,6 +7,9 @@ const config = getDefaultConfig(__dirname, {
   isCSSEnabled: true,
 })
 
+config.resolver.sourceExts.push('js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'mjs')
+config.resolver.assetExts.push('glb', 'gltf', 'png', 'jpg')
+
 // 2. Enable Tamagui
 const { withTamagui } = require('@tamagui/metro-plugin')
 module.exports = withTamagui(config, {
