@@ -12,10 +12,15 @@ extend(geometry)
 
 export default function TabOneScreen() {
   const [textures, setTextures] = useState([])
-  const loadTextures = () => {
-    const imgs = Object.entries(images).map(([key, requireId]) => {
-      return new TextureLoader().load(requireId)
-    })
+  const loadTextures = async () => {
+    const imgs = await Promise.all(
+      Object.entries(images).map(async ([key, requireId]) => {
+        const asset = Asset.fromModule(requireId)
+        await asset.downloadAsync()
+        const texture = new TextureLoader().load(asset.localUri)
+        return texture
+      })
+    )
     setTextures(imgs)
   }
   useEffect(() => {
