@@ -2,28 +2,40 @@ import { ScrollControls, useScroll } from '@react-three/drei'
 import { Billboard, Image, Text } from '@react-three/drei/native'
 import { Canvas, extend, useFrame } from '@react-three/fiber/native'
 import { Asset } from 'expo-asset'
-import { THREE } from 'expo-three'
+import { THREE, TextureLoader } from 'expo-three'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
-import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import images from '../../assets/images'
 
 extend(geometry)
 
 export default function TabOneScreen() {
+  const [textures, setTextures] = useState([])
+  const loadTextures = () => {
+    const imgs = Object.entries(images).map(([key, requireId]) => {
+      return new TextureLoader().load(requireId)
+    })
+    setTextures(imgs)
+  }
+  useEffect(() => {
+    loadTextures()
+  }, [])
+
   return (
     <Canvas dpr={[1, 1.5]}>
       <ScrollControls pages={4} infinite>
-        <Scene position={[0, 1.5, 0]} />
+        <Scene position={[0, 1.5, 0]} textures={textures} />
       </ScrollControls>
     </Canvas>
   )
 }
 
-function Scene({ children, ...props }) {
+function Scene({ children, textures, ...props }) {
   const ref = useRef<THREE.Group>()
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
+
   useFrame((state, delta) => {
     ref.current.rotation.y = -scroll.offset * (Math.PI * 2) // Rotate contents
     state.events.update() // Raycasts every frame rather than on pointer-move
@@ -35,6 +47,7 @@ function Scene({ children, ...props }) {
     )
     state.camera.lookAt(0, 0, 0)
   })
+
   return (
     <group ref={ref} {...props}>
       <Cards
@@ -43,6 +56,7 @@ function Scene({ children, ...props }) {
         len={Math.PI / 4}
         onPointerOver={hover}
         onPointerOut={hover}
+        textures={textures}
       />
       <Cards
         category="summer"
@@ -51,6 +65,7 @@ function Scene({ children, ...props }) {
         position={[0, 0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
+        textures={textures}
       />
       <Cards
         category="autumn"
@@ -58,6 +73,7 @@ function Scene({ children, ...props }) {
         len={Math.PI / 2}
         onPointerOver={hover}
         onPointerOut={hover}
+        textures={textures}
       />
       <Cards
         category="winter"
@@ -66,8 +82,9 @@ function Scene({ children, ...props }) {
         position={[0, -0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
+        textures={textures}
       />
-      <ActiveCard hovered={hovered} />
+      <ActiveCard hovered={hovered} textures={textures} />
     </group>
   )
 }
@@ -80,6 +97,7 @@ function Cards({
   radius = 5.25,
   onPointerOver,
   onPointerOut,
+  textures,
   ...props
 }) {
   const [hovered, hover] = useState(null)
@@ -98,33 +116,27 @@ function Cards({
           {category}
         </Text>
       </Billboard>
-      {Array.from(
-        { length: amount - 3 /* minus 3 images at the end, creates a gap */ },
-        (_, i) => {
-          const angle = from + (i / amount) * len
-          const imgIndex = `img${Math.floor(i % 56) + 1}`
-          const asset = Asset.fromModule(images[imgIndex])
-          asset.downloadAsync()
+      {Array.from({ length: amount - 3 /* minus 3 images at the end, creates a gap */ }, (_, i) => {
+        const angle = from + (i / amount) * len
 
-          return (
-            <Card
-              key={angle}
-              onPointerOver={(e) => (e.stopPropagation(), hover(i), onPointerOver(i))}
-              onPointerOut={() => (hover(null), onPointerOut(null))}
-              position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
-              rotation={[0, Math.PI / 2 + angle, 0]}
-              active={hovered !== null}
-              hovered={hovered === i}
-              url={asset.localUri}
-            />
-          )
-        }
-      )}
+        return (
+          <Card
+            key={angle}
+            onPointerOver={(e) => (e.stopPropagation(), hover(i), onPointerOver(i))}
+            onPointerOut={() => (hover(null), onPointerOut(null))}
+            position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
+            rotation={[0, Math.PI / 2 + angle, 0]}
+            active={hovered !== null}
+            hovered={hovered === i}
+            texture={textures.at(Math.floor(i % 56))}
+          />
+        )
+      })}
     </group>
   )
 }
 
-function Card({ url, active, hovered, ...props }) {
+function Card({ texture, active, hovered, ...props }) {
   const ref = useRef()
   useFrame((state, delta) => {
     const f = hovered ? 1.4 : active ? 1.25 : 1
@@ -133,12 +145,12 @@ function Card({ url, active, hovered, ...props }) {
   })
   return (
     <group {...props}>
-      <Image ref={ref} url={url} scale={[1.618, 1, 1]} side={THREE.DoubleSide} />
+      <Image ref={ref} texture={texture} scale={[1.618, 1, 1]} side={THREE.DoubleSide} />
     </group>
   )
 }
 
-async function ActiveCard({ hovered, ...props }) {
+async function ActiveCard({ hovered, textures, ...props }) {
   const ref = useRef()
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => void (ref.current.material.zoom = 0.8), [hovered])
@@ -146,16 +158,18 @@ async function ActiveCard({ hovered, ...props }) {
     easing.damp(ref.current.material, 'zoom', 1, 0.5, delta)
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
-  const imgIndex = `img${Math.floor(hovered % 56) + 1}`
-  const asset = Asset.fromModule(images[imgIndex])
-  await asset.downloadAsync()
 
   return (
     <Billboard {...props}>
       <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="black">
         {hovered !== null && `${name}\n${hovered}`}
       </Text>
-      <Image ref={ref} transparent position={[0, 1.5, 0]} url={asset.localUri}>
+      <Image
+        ref={ref}
+        transparent
+        position={[0, 1.5, 0]}
+        texture={textures.at(Math.floor(hovered % 56))}
+      >
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}
           args={[3.5, 1.618 * 3.5, 0.2]}
