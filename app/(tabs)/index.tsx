@@ -11,17 +11,25 @@ import images from '../../assets/images'
 extend(geometry)
 
 export default function TabOneScreen() {
+  const [progress, setProgress] = useState(0.0)
   const [textures, setTextures] = useState([])
+
+  const values = Object.entries(images)
   const loadTextures = async () => {
-    const imgs = await Promise.all(
-      Object.entries(images).map(async ([key, requireId]) => {
-        const asset = Asset.fromModule(requireId)
-        await asset.downloadAsync()
-        const texture = new TextureLoader().load(asset.localUri)
-        return texture
-      })
-    )
-    setTextures(imgs)
+    try {
+      const imgs = await Promise.all(
+        values.map(async ([key, requireId]) => {
+          const asset = Asset.fromModule(requireId)
+          await asset.downloadAsync()
+          const texture = new TextureLoader().load(asset.localUri)
+          setProgress((prev) => prev + 1 / values.length)
+          return texture
+        })
+      )
+      setTextures(imgs)
+    } catch (e) {
+      console.error(e)
+    }
   }
   useEffect(() => {
     loadTextures()
@@ -29,9 +37,13 @@ export default function TabOneScreen() {
 
   return (
     <Canvas dpr={[1, 1.5]}>
-      <ScrollControls pages={4} infinite>
-        <Scene position={[0, 1.5, 0]} textures={textures} />
-      </ScrollControls>
+      {Math.round(progress * 1000) / 1000 < 1 ? (
+        <Text>Loading...</Text>
+      ) : (
+        <ScrollControls pages={4} infinite>
+          <Scene position={[0, 1.5, 0]} textures={textures} />
+        </ScrollControls>
+      )}
     </Canvas>
   )
 }
@@ -106,7 +118,7 @@ function Cards({
   ...props
 }) {
   const [hovered, hover] = useState(null)
-  const amount = Math.round(len * 22)
+  const amount = Math.round(len * 25)
   const textPosition = from + (amount / 2 / amount) * len
   return (
     <group {...props}>
@@ -148,6 +160,7 @@ function Card({ texture, active, hovered, ...props }) {
     easing.damp3(ref.current.position, [0, hovered ? 0.25 : 0, 0], 0.1, delta)
     easing.damp3(ref.current.scale, [1.618 * f, 1 * f, 1], 0.15, delta)
   })
+
   return (
     <group {...props}>
       <Image ref={ref} texture={texture} scale={[1.618, 1, 1]} side={THREE.DoubleSide} />
@@ -163,7 +176,7 @@ async function ActiveCard({ hovered, textures, ...props }) {
     easing.damp(ref.current.material, 'zoom', 1, 0.5, delta)
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
-
+  
   return (
     <Billboard {...props}>
       <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="black">
