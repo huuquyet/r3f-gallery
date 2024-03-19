@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber/native'
-import Carousel from '../three/Carousel'
+import { Carousel } from '../three/Carousel'
 
 export default function TabOneScreen() {
   return (

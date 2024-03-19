@@ -28,6 +28,7 @@
     "@tamagui/metro-plugin": "latest",
     "expo": "^50.0.13",
     "expo-asset": "^9.0.2",
+    "expo-file-system": "^16.0.8",
     "expo-font": "^11.10.3",
     "expo-gl": "^13.6.0",
     "expo-linking": "^6.2.2",
@@ -50,6 +51,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.1",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@biomejs/biome": "^1.6.1",
     "@expo/metro-runtime": "^3.1.3",
     "@types/react": "^18.2.67",

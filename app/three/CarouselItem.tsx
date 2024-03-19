@@ -1,9 +1,9 @@
 import { useThree } from '@react-three/fiber/native'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
-import Plane from './Plane'
+import { Plane } from './Plane'
 
-const CarouselItem = ({ index, width, height, setActivePlane, activePlane, item }) => {
+export const CarouselItem = ({ index, width, height, setActivePlane, activePlane, item }) => {
   const $root = useRef()
   const [hover, setHover] = useState(false)
   const [isActive, setIsActive] = useState(false)
@@ -75,5 +75,3 @@ const CarouselItem = ({ index, width, height, setActivePlane, activePlane, item 
     </group>
   )
 }
-
-export default CarouselItem

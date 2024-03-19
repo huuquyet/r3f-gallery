@@ -4,7 +4,7 @@ import { useControls } from 'leva'
 import { forwardRef } from 'react'
 import { Color } from 'three'
 
-const PostProcessing = forwardRef((_, ref) => {
+export const PostProcessing = forwardRef((_, ref) => {
   const { viewport } = useThree()
 
   const { active, ior } = useControls({
@@ -34,5 +34,3 @@ const PostProcessing = forwardRef((_, ref) => {
     </mesh>
   ) : null
 })
-
-export default PostProcessing

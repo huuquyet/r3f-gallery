@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber/native'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
 
-const Plane = ({ texture, width, height, active, ...props }) => {
+export const Plane = ({ texture, width, height, active, ...props }) => {
   const $mesh = useRef()
   const { viewport } = useThree()
   const tex = useTexture(texture)
@@ -92,5 +92,3 @@ const Plane = ({ texture, width, height, active, ...props }) => {
     </mesh>
   )
 }
-
-export default Plane

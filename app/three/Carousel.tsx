@@ -1,13 +1,13 @@
+import { Text } from '@react-three/drei/native'
 import { useFrame, useThree } from '@react-three/fiber/native'
-import { Asset } from 'expo-asset'
+import ExpoTHREE from 'expo-three'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
-import { Text } from 'tamagui'
 import images from '../../assets/images'
 import { getPiramidalIndex, lerp } from '../utils'
-import CarouselItem from './CarouselItem'
-import PostProcessing from './PostProcessing'
+import { CarouselItem } from './CarouselItem'
+import { PostProcessing } from './PostProcessing'
 
 /*------------------------------
 Plane Settings
@@ -29,7 +29,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-const Carousel = () => {
+export const Carousel = () => {
   const [$root, setRoot] = useState()
   const $post = useRef()
 
@@ -73,9 +73,7 @@ const Carousel = () => {
     try {
       const imgs = await Promise.all(
         values.map(async ([key, requireId]) => {
-          const asset = Asset.fromModule(requireId)
-          await asset.downloadAsync()
-          const texture = new TextureLoader().load(asset.localUri)
+          const texture = await ExpoTHREE.loadAsync(requireId)
           setLoading((prev) => prev + 1 / values.length)
           return texture
         })
@@ -177,6 +175,8 @@ const Carousel = () => {
   Render Slider
   --------------------*/
   const renderSlider = () => {
+    console.log(textures)
+
     return (
       <group ref={setRoot}>
         {textures.map((item, i) => (
@@ -202,5 +202,3 @@ const Carousel = () => {
     </group>
   )
 }
-
-export default Carousel
