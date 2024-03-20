@@ -1,10 +1,10 @@
 import { Text } from '@react-three/drei/native'
 import { useFrame, useThree } from '@react-three/fiber/native'
-import ExpoTHREE from 'expo-three'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
-import images from '../../assets/images'
+import * as THREE from 'three'
+import images from '../../public/images'
 import { getPiramidalIndex, lerp } from '../utils'
 import { CarouselItem } from './CarouselItem'
 import { PostProcessing } from './PostProcessing'
@@ -73,7 +73,7 @@ export const Carousel = () => {
     try {
       const imgs = await Promise.all(
         values.map(async ([key, requireId]) => {
-          const texture = await ExpoTHREE.loadAsync(requireId)
+          const texture = await THREE.loadAsync(requireId)
           setLoading((prev) => prev + 1 / values.length)
           return texture
         })

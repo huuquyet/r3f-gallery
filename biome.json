@@ -25,15 +25,18 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
       "security": {
         "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noEmptyInterface": "off",
         "noExplicitAny": "off"
-      },
-      "style": {
-        "noNonNullAssertion": "off"
       }
     }
   },

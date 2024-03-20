@@ -53,7 +53,15 @@ const nextConfig = {
   },
 }
 
-const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
+const KEYS_TO_OMIT = [
+  'webpackDevMiddleware',
+  'configOrigin',
+  'target',
+  'analyticsId',
+  'webpack5',
+  'amp',
+  'assetPrefix',
+]
 
 module.exports = (_phase, { defaultConfig }) => {
   const plugins = [[withPWA], [withBundleAnalyzer, {}]]
@@ -64,11 +72,11 @@ module.exports = (_phase, { defaultConfig }) => {
   })
 
   const finalConfig = {}
-  Object.keys(wConfig).forEach((key) => {
+  for (const key of Object.keys(wConfig)) {
     if (!KEYS_TO_OMIT.includes(key)) {
       finalConfig[key] = wConfig[key]
     }
-  })
+  }
 
   return finalConfig
 }

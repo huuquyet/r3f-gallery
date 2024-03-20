@@ -19,13 +19,16 @@ const usePostProcess = () => {
   const [{ dpr }, size, gl] = useThree((s) => [s.viewport, s.size, s.gl])
 
   const [screenCamera, screenScene, screen, renderTarget] = useMemo(() => {
-    let screenScene = new THREE.Scene()
+    const screenScene = new THREE.Scene()
     const screenCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
     const screen = new THREE.Mesh(getFullscreenTriangle())
     screen.frustumCulled = false
     screenScene.add(screen)
 
-    const renderTarget = new THREE.WebGLRenderTarget(512, 512, { samples: 4, encoding: gl.encoding })
+    const renderTarget = new THREE.WebGLRenderTarget(512, 512, {
+      samples: 4,
+      encoding: gl.encoding,
+    })
     renderTarget.depthTexture = new THREE.DepthTexture() // fix depth issues
 
     // use ShaderMaterial for linearToOutputTexel
