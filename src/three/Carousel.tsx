@@ -1,9 +1,7 @@
-import { Text } from '@react-three/drei/native'
-import { useFrame, useThree } from '@react-three/fiber/native'
+import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
-import * as THREE from 'three'
 import images from '../../public/images'
 import { getPiramidalIndex, lerp } from '../utils'
 import { CarouselItem } from './CarouselItem'
@@ -37,9 +35,6 @@ export const Carousel = () => {
   const prevActivePlane = usePrevious(activePlane)
   const { viewport } = useThree()
 
-  const [loading, setLoading] = useState(0.0)
-  const [textures, setTextures] = useState([])
-
   /*--------------------
   Vars
   --------------------*/
@@ -65,24 +60,6 @@ export const Carousel = () => {
     })
   }
 
-  /*--------------------
-  Load Texture
-  --------------------*/
-  const values = Object.entries(images)
-  const loadTextures = async () => {
-    try {
-      const imgs = await Promise.all(
-        values.map(async ([key, requireId]) => {
-          const texture = await THREE.loadAsync(requireId)
-          setLoading((prev) => prev + 1 / values.length)
-          return texture
-        })
-      )
-      setTextures(imgs)
-    } catch (e) {
-      console.error(e)
-    }
-  }
   /*--------------------
   RAF
   --------------------*/
@@ -137,10 +114,6 @@ export const Carousel = () => {
     startX.current = x
   }
 
-  useEffect(() => {
-    loadTextures()
-  }, [])
-
   /*--------------------
   Click
   --------------------*/
@@ -175,17 +148,15 @@ export const Carousel = () => {
   Render Slider
   --------------------*/
   const renderSlider = () => {
-    console.log(textures)
-
     return (
       <group ref={setRoot}>
-        {textures.map((item, i) => (
+        {Object.entries(images).map(([key, item], i) => (
           <CarouselItem
             width={planeSettings.width}
             height={planeSettings.height}
             setActivePlane={setActivePlane}
             activePlane={activePlane}
-            key={item}
+            key={key}
             item={item}
             index={i}
           />
@@ -197,7 +168,7 @@ export const Carousel = () => {
   return (
     <group>
       {renderPlaneEvents()}
-      {Math.round(loading * 1000) / 1000 < 1 ? <Text>Loading...</Text> : renderSlider()}
+      {renderSlider()}
       <PostProcessing ref={$post} />
     </group>
   )

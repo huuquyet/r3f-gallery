@@ -1,5 +1,5 @@
-import { useTexture } from '@react-three/drei/native'
-import { useThree } from '@react-three/fiber/native'
+import { useTexture } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
 

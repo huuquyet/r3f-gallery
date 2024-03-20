@@ -1,5 +1,5 @@
 const title = 'React Three Next Starter'
-const url = 'https://react-three-next.vercel.app/'
+const url = 'https://r3f-gallery.vercel.app/'
 const description =
   'The easiest and fastest way to create a 3D website using React Three Fiber and NextJS'
 const author = 'Author'
@@ -21,7 +21,7 @@ export default function Head() {
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist"
+        content="Next.js,React Three Fiber,Three.js"
       />
       <meta name="robots" content="index,follow" />
       <meta name="distribution" content="web" />

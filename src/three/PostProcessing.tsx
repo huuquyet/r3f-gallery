@@ -1,5 +1,5 @@
-import { MeshTransmissionMaterial } from '@react-three/drei/native'
-import { useThree } from '@react-three/fiber/native'
+import { MeshTransmissionMaterial } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 import { useControls } from 'leva'
 import { forwardRef } from 'react'
 import { Color } from 'three'

@@ -1,4 +1,4 @@
-import { useThree } from '@react-three/fiber/native'
+import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
 import { Plane } from './Plane'
