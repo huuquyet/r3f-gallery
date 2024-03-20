@@ -8,9 +8,9 @@ import * as THREE from 'three'
 extend(geometry)
 
 export const CardsDemo = () => (
-    <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} />
-    </ScrollControls>
+  <ScrollControls pages={4} infinite>
+    <Scene position={[0, 1.5, 0]} />
+  </ScrollControls>
 )
 
 function Scene({ children, ...props }) {
@@ -76,7 +76,7 @@ function Cards({
   ...props
 }) {
   const [hovered, hover] = useState(null)
-  const amount = Math.round(len * 28)
+  const amount = Math.round(len * 33)
   const textPosition = from + (amount / 2 / amount) * len
   return (
     <group {...props}>
