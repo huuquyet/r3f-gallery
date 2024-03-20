@@ -33,6 +33,7 @@
     "@next/bundle-analyzer": "^14.1.4",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.67",
+    "@types/three": "^0.162.0",
     "autoprefixer": "^10.4.18",
     "file-loader": "^6.2.0",
     "glslify": "^7.1.1",
