@@ -7157,6 +7157,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"random-words@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "random-words@npm:2.0.1"
+  dependencies:
+    seedrandom: "npm:^3.0.5"
+  checksum: 10/13385e573d91e64b898b9dd81df416718c3e2fa9ddb56181c5ed407732eacace2da8914d1d1da1d4b70f3c97d787f0b19280602d4352bf55ce1e81f5ddcd2982
+  languageName: node
+  linkType: hard
+
 "randombytes@npm:^2.1.0":
   version: 2.1.0
   resolution: "randombytes@npm:2.1.0"
@@ -7274,8 +7283,10 @@ __metadata:
     glslify-loader: "npm:^2.0.0"
     gsap: "npm:^3.12.5"
     leva: "npm:^0.9.35"
+    maath: "npm:^0.10.7"
     next: "npm:^14.1.4"
     postcss: "npm:^8.4.37"
+    random-words: "npm:^2.0.1"
     raw-loader: "npm:^4.0.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -7700,6 +7711,13 @@ __metadata:
   version: 5.2.0
   resolution: "screenfull@npm:5.2.0"
   checksum: 10/b8b4b8010f48889341ad1981ca9e6e02db1f10dec686244d95bd2bfde47451059f5ba4c744449913b10f021f14f79d374987a873b6086eb488295962ba50381e
+  languageName: node
+  linkType: hard
+
+"seedrandom@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "seedrandom@npm:3.0.5"
+  checksum: 10/acad5e516c04289f61c2fb9848f449b95f58362b75406b79ec51e101ec885293fc57e3675d2f39f49716336559d7190f7273415d185fead8cd27b171ebf7d8fb
   languageName: node
   linkType: hard
 
