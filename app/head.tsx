@@ -19,10 +19,7 @@ export default function Head() {
       {/* Search Engine Optimization Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta
-        name="keywords"
-        content="Next.js,React Three Fiber,Three.js"
-      />
+      <meta name="keywords" content="Next.js,React Three Fiber,Three.js" />
       <meta name="robots" content="index,follow" />
       <meta name="distribution" content="web" />
       {/* 
