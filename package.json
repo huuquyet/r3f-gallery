@@ -1,5 +1,6 @@
 {
-  "name": "react-three-next",
+  "name": "r3f-gallery",
+  "description": "Next.js React Three Fiber",
   "version": "0.1.0",
   "private": true,
   "scripts": {

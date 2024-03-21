@@ -7044,6 +7044,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"r3f-gallery@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "r3f-gallery@workspace:."
+  dependencies:
+    "@ducanh2912/next-pwa": "npm:^10.2.5"
+    "@next/bundle-analyzer": "npm:^14.1.4"
+    "@react-three/drei": "npm:^9.102.6"
+    "@react-three/fiber": "npm:^8.15.19"
+    "@studio-freight/lenis": "npm:^1.0.42"
+    "@types/node": "npm:^20.11.30"
+    "@types/react": "npm:^18.2.67"
+    "@types/three": "npm:^0.162.0"
+    autoprefixer: "npm:^10.4.19"
+    file-loader: "npm:^6.2.0"
+    glsl-random: "npm:^0.0.5"
+    glslify: "npm:^7.1.1"
+    glslify-loader: "npm:^2.0.0"
+    gsap: "npm:^3.12.5"
+    leva: "npm:^0.9.35"
+    maath: "npm:^0.10.7"
+    next: "npm:^14.1.4"
+    postcss: "npm:^8.4.38"
+    random-words: "npm:^2.0.1"
+    raw-loader: "npm:^4.0.2"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    react-use: "npm:^17.5.0"
+    tailwindcss: "npm:^3.4.1"
+    three: "npm:^0.162.0"
+    three-stdlib: "npm:^2.29.6"
+    tunnel-rat: "npm:^0.1.2"
+    typescript: "npm:^5.4.3"
+    url-loader: "npm:^4.1.1"
+    vercel: "npm:latest"
+  languageName: unknown
+  linkType: soft
+
 "random-words@npm:^2.0.1":
   version: 2.0.1
   resolution: "random-words@npm:2.0.1"
@@ -7150,43 +7187,6 @@ __metadata:
   checksum: 10/7c4bfd76b0ba7802fefaa0fc8b93610eae20044693af85e8a1d605faad4d82fa47b8ffe4af409c67d45d0c9d93a8f0ed407ae506163fc5e4ab3145bdec0d5602
   languageName: node
   linkType: hard
-
-"react-three-next@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-three-next@workspace:."
-  dependencies:
-    "@ducanh2912/next-pwa": "npm:^10.2.5"
-    "@next/bundle-analyzer": "npm:^14.1.4"
-    "@react-three/drei": "npm:^9.102.6"
-    "@react-three/fiber": "npm:^8.15.19"
-    "@studio-freight/lenis": "npm:^1.0.42"
-    "@types/node": "npm:^20.11.30"
-    "@types/react": "npm:^18.2.67"
-    "@types/three": "npm:^0.162.0"
-    autoprefixer: "npm:^10.4.19"
-    file-loader: "npm:^6.2.0"
-    glsl-random: "npm:^0.0.5"
-    glslify: "npm:^7.1.1"
-    glslify-loader: "npm:^2.0.0"
-    gsap: "npm:^3.12.5"
-    leva: "npm:^0.9.35"
-    maath: "npm:^0.10.7"
-    next: "npm:^14.1.4"
-    postcss: "npm:^8.4.38"
-    random-words: "npm:^2.0.1"
-    raw-loader: "npm:^4.0.2"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    react-use: "npm:^17.5.0"
-    tailwindcss: "npm:^3.4.1"
-    three: "npm:^0.162.0"
-    three-stdlib: "npm:^2.29.6"
-    tunnel-rat: "npm:^0.1.2"
-    typescript: "npm:^5.4.3"
-    url-loader: "npm:^4.1.1"
-    vercel: "npm:latest"
-  languageName: unknown
-  linkType: soft
 
 "react-universal-interface@npm:^0.6.2":
   version: 0.6.2

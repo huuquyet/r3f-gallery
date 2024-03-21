@@ -7,7 +7,7 @@
 // 3 - enjoy
 import { addEffect, useFrame } from '@react-three/fiber'
 import Lenis from '@studio-freight/lenis'
-import { useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { useRef } from 'react'
 import * as THREE from 'three'
 
@@ -18,7 +18,7 @@ const state = {
 
 const { damp } = THREE.MathUtils
 
-export default function Scroll({ children }) {
+export default function Scroll({ children }: { children: ReactNode }) {
   const content = useRef(null)
   const wrapper = useRef(null)
 
@@ -36,7 +36,7 @@ export default function Scroll({ children }) {
       infinite: false,
     })
 
-    lenis.on('scroll', ({ scroll, progress }) => {
+    lenis.on('scroll', ({ scroll, progress }: { scroll: number; progress: number }) => {
       state.top = scroll
       state.progress = progress
     })
