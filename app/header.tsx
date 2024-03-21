@@ -14,8 +14,8 @@ export default function Header({ titlePre = '' }) {
 
   const navItems: { label: string; page?: string; link?: string }[] = [
     { label: '3D', page: '/' },
-    { label: 'Carousel', page: '/carousel' },
-    { label: 'Horizontal', page: '/horizontal' },
+    // { label: 'Carousel', page: '/carousel' },
+    // { label: 'Horizontal', page: '/horizontal' },
     { label: 'Source Code', link: 'https://github.com/huuquyet/r3f-gallery' },
   ]
 

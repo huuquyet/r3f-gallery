@@ -3,7 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import Header from './header'
+import Header from '@/header'
 
 const CardsDemo = dynamic(() => import('@/three/CardsDemo').then((mod) => mod.CardsDemo), {})
 
