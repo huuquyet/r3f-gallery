@@ -96,8 +96,15 @@ function Cards({
         return (
           <Card
             key={angle}
-            onPointerOver={(e) => (e.stopPropagation(), hover(i), onPointerOver(i))}
-            onPointerOut={() => (hover(null), onPointerOut(null))}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              hover(i)
+              onPointerOver(i)
+            }}
+            onPointerOut={() => {
+              hover(null)
+              onPointerOut(null)
+            }}
             position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
@@ -127,7 +134,9 @@ function Card({ url, active, hovered, ...props }) {
 function ActiveCard({ hovered, ...props }) {
   const ref = useRef()
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
-  useLayoutEffect(() => void (ref.current.material.zoom = 0.8), [hovered])
+  useLayoutEffect(() => {
+    ref.current.material.zoom = 0.8
+  }, [hovered])
   useFrame((state, delta) => {
     easing.damp(ref.current.material, 'zoom', 1, 0.5, delta)
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)

@@ -33,9 +33,9 @@ function Minimap() {
   })
   return (
     <group ref={ref}>
-      {urls.map((_, i) => (
+      {urls.map((url, i) => (
         <line
-          key={i}
+          key={url}
           geometry={geometry}
           material={material}
           position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]}
@@ -50,7 +50,9 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   const scroll = useScroll()
   const { clicked, urls } = useSnapshot(state)
   const [hovered, hover] = useState(false)
-  const click = () => (state.clicked = index === clicked ? null : index)
+  const click = () => {
+    state.clicked = index === clicked ? null : index
+  }
   const over = () => hover(true)
   const out = () => hover(false)
   useFrame((state, delta) => {
@@ -101,21 +103,25 @@ function Items({ w = 0.7, gap = 0.15 }) {
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   return (
-    <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
+    <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width} >
       <Minimap />
       <Scroll>
-        {
-          urls.map((url, i) => (
-            <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />
-          ))
-        }
+        {urls.map((url, i) => (
+          <Item key={url} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />
+        ))}
       </Scroll>
     </ScrollControls>
   )
 }
 
 export const Horizontal = () => (
-  <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
+  <Canvas
+    gl={{ antialias: false }}
+    dpr={[1, 1.5]}
+    onPointerMissed={() => {
+      state.clicked = null
+    }}
+  >
     <Items />
   </Canvas>
 )

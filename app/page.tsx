@@ -11,13 +11,11 @@ export default function Page() {
   return (
     <>
       <Header titlePre="3D" />
-      <div>
-        <Canvas>
-          <Suspense fallback={null}>
-            <CardsDemo />
-          </Suspense>
-        </Canvas>
-      </div>
+      <Canvas>
+        <Suspense fallback={null}>
+          <CardsDemo />
+        </Suspense>
+      </Canvas>
     </>
   )
 }

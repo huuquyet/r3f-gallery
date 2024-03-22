@@ -11,13 +11,11 @@ export default function Page() {
   return (
     <>
       <Header titlePre="Carousel" />
-      <div>
-        <Canvas>
-          <Suspense fallback={null}>
-            <Carousel />
-          </Suspense>
-        </Canvas>
-      </div>
+      <Canvas>
+        <Suspense fallback={null}>
+          <Carousel />
+        </Suspense>
+      </Canvas>
     </>
   )
 }
