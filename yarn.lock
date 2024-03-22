@@ -3810,6 +3810,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"derive-valtio@npm:0.1.0":
+  version: 0.1.0
+  resolution: "derive-valtio@npm:0.1.0"
+  peerDependencies:
+    valtio: "*"
+  checksum: 10/3fec351a46cbe2aa37099059e4fc8f518bc4c2c9e9f29cc3e55811fb9ce61f3fc49302196c620705fc5584e5a8e1be629a4269f9903899450099a487ceea8e3b
+  languageName: node
+  linkType: hard
+
 "detect-gpu@npm:^5.0.28":
   version: 5.0.38
   resolution: "detect-gpu@npm:5.0.38"
@@ -7020,6 +7029,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-compare@npm:2.6.0":
+  version: 2.6.0
+  resolution: "proxy-compare@npm:2.6.0"
+  checksum: 10/c7fc9e50873f01bd79bf68ed861f740891d6c590332954b9522479a5c7d598a62225fdfa8a42460d9be5bc7a78c28377839d9d06fbced26cae62332c4410b81a
+  languageName: node
+  linkType: hard
+
 "pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -7077,6 +7093,7 @@ __metadata:
     tunnel-rat: "npm:^0.1.2"
     typescript: "npm:^5.4.3"
     url-loader: "npm:^4.1.1"
+    valtio: "npm:^1.13.2"
     vercel: "npm:latest"
   languageName: unknown
   linkType: soft
@@ -8943,6 +8960,25 @@ __metadata:
   version: 1.5.1
   resolution: "v8n@npm:1.5.1"
   checksum: 10/da50060821b714d6a1f6eb49d2ec8052ee83bfdddd87dc3d6309ae34ea5d456cf01f7595ef06d0f435707fdeccdbf90f22d57f3967d7f3fde2f48a979105f137
+  languageName: node
+  linkType: hard
+
+"valtio@npm:^1.13.2":
+  version: 1.13.2
+  resolution: "valtio@npm:1.13.2"
+  dependencies:
+    derive-valtio: "npm:0.1.0"
+    proxy-compare: "npm:2.6.0"
+    use-sync-external-store: "npm:1.2.0"
+  peerDependencies:
+    "@types/react": ">=16.8"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 10/0e638f23314fc61a31571cd27bfc2169330d2488cf6d2bd1526535aca67e633734707a1e787ab475151dbca277754db7da08c5cf0372ea2a48a563f33a25ade0
   languageName: node
   linkType: hard
 

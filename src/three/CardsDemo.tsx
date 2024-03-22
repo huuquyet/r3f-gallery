@@ -31,14 +31,14 @@ function Scene({ children, ...props }) {
   return (
     <group ref={ref} {...props}>
       <Cards
-        category="spring"
+        category="SPRING"
         from={0}
         len={Math.PI / 4}
         onPointerOver={hover}
         onPointerOut={hover}
       />
       <Cards
-        category="summer"
+        category="SUMMER"
         from={Math.PI / 4}
         len={Math.PI / 2}
         position={[0, 0.4, 0]}
@@ -46,14 +46,14 @@ function Scene({ children, ...props }) {
         onPointerOut={hover}
       />
       <Cards
-        category="autumn"
+        category="AUTUMN"
         from={Math.PI / 4 + Math.PI / 2}
         len={Math.PI / 2}
         onPointerOver={hover}
         onPointerOut={hover}
       />
       <Cards
-        category="winter"
+        category="WINTER"
         from={Math.PI * 1.25}
         len={Math.PI * 2 - Math.PI * 1.25}
         position={[0, -0.4, 0]}
@@ -87,7 +87,7 @@ function Cards({
           Math.cos(textPosition) * radius * 1.4,
         ]}
       >
-        <Text fontSize={0.25} anchorX="center" color="black">
+        <Text fontSize={0.25} anchorX="center" color="#e9e9e9" fontWeight={600}>
           {category}
         </Text>
       </Billboard>
@@ -134,7 +134,7 @@ function ActiveCard({ hovered, ...props }) {
   })
   return (
     <Billboard {...props}>
-      <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="black">
+      <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="#e9e9e9">
         {hovered !== null && `${name}\n${hovered}`}
       </Text>
       <Image

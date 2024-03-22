@@ -12,10 +12,10 @@
 
   :root {
     font-size: 13px;
-    --color-text: #343131;
-    --color-bg: #d5d5d5;
-    --color-link: #868282;
-    --color-link-hover: #000;
+    --color-text: #a0a0a0;
+    --color-bg: #151515;
+    --color-link: #696969;
+    --color-link-hover: #fff;
   }
 
   body {
@@ -27,6 +27,7 @@
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
     scroll-behavior: none;
+    overscroll-behavior: none;
     height: 100%;
     user-select: none;
   }
@@ -37,6 +38,11 @@
     padding: 2em 0;
     text-align: center;
     letter-spacing: -0.02em;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    right: 0;
+    z-index: 1;
   }
   
   .header ul {

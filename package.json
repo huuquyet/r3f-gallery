@@ -29,7 +29,8 @@
     "react-use": "^17.5.0",
     "three": "^0.162.0",
     "three-stdlib": "^2.29.6",
-    "tunnel-rat": "^0.1.2"
+    "tunnel-rat": "^0.1.2",
+    "valtio": "^1.13.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.4",

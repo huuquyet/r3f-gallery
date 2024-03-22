@@ -1,16 +1,18 @@
 'use client'
 
 import Header from '@/header'
-import { Canvas } from '@react-three/fiber'
+import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+
+const Horizontal = dynamic(() => import('@/three/Horizontal').then((mod) => mod.Horizontal), {})
 
 export default function Page() {
   return (
     <>
       <Header titlePre="Horizontal" />
-      <Canvas>
-        <Suspense fallback={null}></Suspense>
-      </Canvas>
+      <Suspense fallback={null}>
+        <Horizontal />
+      </Suspense>
     </>
   )
 }
