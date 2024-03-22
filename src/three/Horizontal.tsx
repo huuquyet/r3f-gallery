@@ -98,12 +98,12 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   )
 }
 
-function Items({ w = 0.7, gap = 0.15 }) {
+export default function Horizontal({ w = 0.7, gap = 0.15 }) {
   const { urls } = useSnapshot(state)
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   return (
-    <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width} >
+    <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
       <Minimap />
       <Scroll>
         {urls.map((url, i) => (
@@ -113,15 +113,3 @@ function Items({ w = 0.7, gap = 0.15 }) {
     </ScrollControls>
   )
 }
-
-export const Horizontal = () => (
-  <Canvas
-    gl={{ antialias: false }}
-    dpr={[1, 1.5]}
-    onPointerMissed={() => {
-      state.clicked = null
-    }}
-  >
-    <Items />
-  </Canvas>
-)

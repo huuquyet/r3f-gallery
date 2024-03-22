@@ -12,10 +12,10 @@ export default function Header({ titlePre = '' }) {
   const author = 'Quyet'
   const twitter = '@HuuQuyetNg'
 
-  const navItems: { label: string; page?: string; link?: string }[] = [
-    { label: '3D', page: '/' },
-    { label: 'Carousel', page: '/carousel' },
-    { label: 'Horizontal', page: '/horizontal' },
+  const navItems: { label: string; slug?: string; link?: string }[] = [
+    { label: 'Cards', slug: 'cards' },
+    { label: 'Carousel', slug: 'carousel' },
+    { label: 'Horizontal', slug: 'horizontal' },
     { label: 'Source Code', link: 'https://github.com/huuquyet/r3f-gallery' },
   ]
 
@@ -70,10 +70,10 @@ export default function Header({ titlePre = '' }) {
       </Head>
 
       <ul>
-        {navItems.map(({ label, page, link }) => (
+        {navItems.map(({ label, slug, link }) => (
           <li key={label}>
-            {page ? (
-              <Link href={page} className={pathname === page ? 'active' : undefined}>
+            {slug ? (
+              <Link href={`/${slug}`} className={pathname === `/${slug}` ? 'active' : undefined}>
                 {label}
               </Link>
             ) : (

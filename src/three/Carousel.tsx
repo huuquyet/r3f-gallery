@@ -27,7 +27,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-export const Carousel = () => {
+export default function Carousel() {
   const [$root, setRoot] = useState()
   const $post = useRef()
 
@@ -150,17 +150,19 @@ export const Carousel = () => {
   const renderSlider = () => {
     return (
       <group ref={setRoot}>
-        {Object.entries(images).map(([key, item], i) => (
-          <CarouselItem
-            width={planeSettings.width}
-            height={planeSettings.height}
-            setActivePlane={setActivePlane}
-            activePlane={activePlane}
-            key={key}
-            item={item}
-            index={i}
-          />
-        ))}
+        {Object.entries(images)
+          .reverse()
+          .map(([key, item], i) => (
+            <CarouselItem
+              width={planeSettings.width}
+              height={planeSettings.height}
+              setActivePlane={setActivePlane}
+              activePlane={activePlane}
+              key={key}
+              item={item}
+              index={i}
+            />
+          ))}
       </group>
     )
   }

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { type ReactNode, useRef } from 'react'
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
-const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = ({ children }: { children: ReactNode }) => {
   const ref = useRef()
 
   return (
@@ -34,5 +34,3 @@ const Layout = ({ children }: { children: ReactNode }) => {
     </div>
   )
 }
-
-export { Layout }

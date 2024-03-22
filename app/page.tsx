@@ -5,15 +5,15 @@ import { Canvas } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-const CardsDemo = dynamic(() => import('@/three/CardsDemo').then((mod) => mod.CardsDemo), {})
+const Cards = dynamic(() => import('@/three/Cards'), {})
 
 export default function Page() {
   return (
     <>
       <Header titlePre="3D" />
-      <Canvas>
+      <Canvas gl={{ antialias: false }} dpr={[1, 1.5]}>
         <Suspense fallback={null}>
-          <CardsDemo />
+          <Cards />
         </Suspense>
       </Canvas>
     </>

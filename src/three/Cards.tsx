@@ -7,11 +7,13 @@ import * as THREE from 'three'
 
 extend(geometry)
 
-export const CardsDemo = () => (
-  <ScrollControls pages={4} infinite>
-    <Scene position={[0, 1.5, 0]} />
-  </ScrollControls>
-)
+export default function CardsDemo() {
+  return (
+    <ScrollControls pages={4} infinite>
+      <Scene position={[0, 1.5, 0]} />
+    </ScrollControls>
+  )
+}
 
 function Scene({ children, ...props }) {
   const ref = useRef()
