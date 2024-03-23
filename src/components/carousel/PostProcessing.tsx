@@ -7,7 +7,7 @@ import { Color } from 'three'
 export const PostProcessing = forwardRef((_, ref) => {
   const { viewport } = useThree()
 
-  const { active, ior } = useControls({
+  /* const { active, ior } = useControls({
     active: {
       value: true,
     },
@@ -16,9 +16,9 @@ export const PostProcessing = forwardRef((_, ref) => {
       min: 0.8,
       max: 1.2,
     },
-  })
+  }) */
 
-  return active ? (
+  return (
     <mesh position={[0, 0, 1]}>
       <planeGeometry args={[viewport.width, viewport.height]} />
       <MeshTransmissionMaterial
@@ -29,8 +29,8 @@ export const PostProcessing = forwardRef((_, ref) => {
         thickness={0}
         chromaticAberration={0.06}
         anisotropy={0}
-        ior={ior}
+        // ior={ior}
       />
     </mesh>
-  ) : null
+  )
 })

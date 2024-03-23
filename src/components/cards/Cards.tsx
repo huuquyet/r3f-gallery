@@ -10,7 +10,7 @@ extend(geometry)
 export default function CardsDemo({ urls }: { urls: string[] }) {
   return (
     <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} urls={urls} />
+      <Scene position={[0, 1.5, 0]} urls={urls.reverse()} />
     </ScrollControls>
   )
 }
@@ -89,7 +89,7 @@ function Cards({
   urls: string[]
 }) {
   const [hovered, hover] = useState(null)
-  const amount = Math.round(len * 33)
+  const amount = Math.round(len * 26)
   const textPosition = from + (amount / 2 / amount) * len
   return (
     <group {...props}>

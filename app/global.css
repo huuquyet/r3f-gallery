@@ -39,6 +39,7 @@
     letter-spacing: -0.02em;
     position: fixed;
     z-index: 1;
+    right: 0;
   }
   
   .header ul {
@@ -65,6 +66,14 @@
     .header {
       padding: .5em 0 2em;
     }
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
   }
 
   /* Page Loader */
@@ -112,41 +121,6 @@
 
   a:hover {
     color: var(--color-link-hover);
-    outline: none;
-  }
-
-  /* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
-  a:focus {
-    /* Provide a fallback style for browsers
-    that don't support :focus-visible */
-    outline: none;
-    background: lightgrey;
-  }
-
-  a:focus:not(:focus-visible) {
-    /* Remove the focus indicator on mouse-focus for browsers
-    that do support :focus-visible */
-    background: transparent;
-  }
-
-  a:focus-visible {
-    /* Draw a very noticeable focus style for
-    keyboard-focus on browsers that do support
-    :focus-visible */
-    outline: 2px solid red;
-    background: transparent;
-  }
-
-  .unbutton {
-    background: none;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    cursor: pointer;
-  }
-
-  .unbutton:focus {
     outline: none;
   }
 
