@@ -39,7 +39,6 @@
     letter-spacing: -0.02em;
     position: fixed;
     z-index: 1;
-    right: 0;
   }
   
   .header ul {
@@ -74,6 +73,13 @@
     align-items: center;
     height: 100vh;
     flex-direction: column;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
   /* Page Loader */

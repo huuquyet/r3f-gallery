@@ -94,7 +94,7 @@ function Item({
       {...props}
       position={position}
       scale={scale}
-      onClick={click}
+      onClick={() => {}}
       onPointerOver={over}
       onPointerOut={out}
     />
@@ -112,7 +112,7 @@ export default function Horizontal({
     <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
       <Minimap urls={urls} />
       <Scroll>
-        {urls.map((url, i) => (
+        {urls.reverse().map((url, i) => (
           <Item
             key={url}
             index={i}

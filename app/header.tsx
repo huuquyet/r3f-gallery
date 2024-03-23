@@ -16,7 +16,7 @@ export default function Header({ titlePre = '' }) {
     { label: 'Cards', slug: 'cards' },
     { label: 'Carousel', slug: 'carousel' },
     { label: 'Horizontal', slug: 'horizontal' },
-    { label: 'Source Code', link: 'https://github.com/huuquyet/r3f-gallery' },
+    { label: 'Github', link: 'https://github.com/huuquyet/r3f-gallery' },
   ]
 
   return (
