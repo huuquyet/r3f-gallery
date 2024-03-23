@@ -1,9 +1,8 @@
+import { getPiramidalIndex, lerp } from '@/utils'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
-import images from '../../public/imgList'
-import { getPiramidalIndex, lerp } from '../utils'
 import { CarouselItem } from './CarouselItem'
 import { PostProcessing } from './PostProcessing'
 
@@ -27,7 +26,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-export default function Carousel() {
+export default function Carousel({ urls }: { urls: string[] }) {
   const [$root, setRoot] = useState()
   const $post = useRef()
 
@@ -52,7 +51,7 @@ export default function Carousel() {
   /*--------------------
   Diaplay Items
   --------------------*/
-  const displayItems = (item, index, active) => {
+  const displayItems = (item: any, index: number, active: number) => {
     const piramidalIndex = getPiramidalIndex($items, active)[index]
     gsap.to(item.position, {
       x: (index - active) * (planeSettings.width + planeSettings.gap),
@@ -67,7 +66,7 @@ export default function Carousel() {
     progress.current = Math.max(0, Math.min(progress.current, 100))
 
     const active = Math.floor((progress.current / 100) * ($items.length - 1))
-    $items.forEach((item, index) => displayItems(item, index, active))
+    $items.forEach((item: any, index: number) => displayItems(item, index, active))
     speed.current = lerp(speed.current, Math.abs(oldProgress.current - progress.current), 0.1)
 
     oldProgress.current = lerp(oldProgress.current, progress.current, 0.1)
@@ -80,7 +79,7 @@ export default function Carousel() {
   /*--------------------
   Handle Wheel
   --------------------*/
-  const handleWheel = (e) => {
+  const handleWheel = (e: any) => {
     if (activePlane !== null) return
     const isVerticalScroll = Math.abs(e.deltaY) > Math.abs(e.deltaX)
     const wheelProgress = isVerticalScroll ? e.deltaY : e.deltaX
@@ -90,7 +89,7 @@ export default function Carousel() {
   /*--------------------
   Handle Down
   --------------------*/
-  const handleDown = (e) => {
+  const handleDown = (e: any) => {
     if (activePlane !== null) return
     isDown.current = true
     startX.current = e.clientX || e.touches?.[0].clientX || 0
@@ -106,7 +105,7 @@ export default function Carousel() {
   /*--------------------
   Handle Move
   --------------------*/
-  const handleMove = (e) => {
+  const handleMove = (e: any) => {
     if (activePlane !== null || !isDown.current) return
     const x = e.clientX || e.touches?.[0].clientX || 0
     const mouseProgress = (x - startX.current) * speedDrag
@@ -150,19 +149,17 @@ export default function Carousel() {
   const renderSlider = () => {
     return (
       <group ref={setRoot}>
-        {Object.entries(images)
-          .reverse()
-          .map(([key, item], i) => (
-            <CarouselItem
-              width={planeSettings.width}
-              height={planeSettings.height}
-              setActivePlane={setActivePlane}
-              activePlane={activePlane}
-              key={key}
-              item={item}
-              index={i}
-            />
-          ))}
+        {urls.map((item, i) => (
+          <CarouselItem
+            width={planeSettings.width}
+            height={planeSettings.height}
+            setActivePlane={setActivePlane}
+            activePlane={activePlane}
+            key={item}
+            item={item}
+            index={i}
+          />
+        ))}
       </group>
     )
   }

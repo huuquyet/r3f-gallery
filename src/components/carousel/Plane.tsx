@@ -2,9 +2,16 @@ import { useTexture } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
+import type { Mesh } from 'three'
 
-export const Plane = ({ texture, width, height, active, ...props }) => {
-  const $mesh = useRef()
+export const Plane = ({
+  texture,
+  width,
+  height,
+  active,
+  ...props
+}: { texture: string; width: number; height: number; active: boolean }) => {
+  const $mesh = useRef<Mesh>(null!)
   const { viewport } = useThree()
   const tex = useTexture(texture)
 

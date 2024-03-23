@@ -3,20 +3,20 @@ import { extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import * as THREE from 'three'
+import { DoubleSide, type Group, type Mesh } from 'three'
 
 extend(geometry)
 
-export default function CardsDemo() {
+export default function CardsDemo({ urls }: { urls: string[] }) {
   return (
     <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} />
+      <Scene position={[0, 1.5, 0]} urls={urls} />
     </ScrollControls>
   )
 }
 
-function Scene({ children, ...props }) {
-  const ref = useRef()
+function Scene({ position, ...props }: { position: any; urls: string[] }) {
+  const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
   useFrame((state, delta) => {
@@ -38,6 +38,7 @@ function Scene({ children, ...props }) {
         len={Math.PI / 4}
         onPointerOver={hover}
         onPointerOut={hover}
+        {...props}
       />
       <Cards
         category="SUMMER"
@@ -46,6 +47,7 @@ function Scene({ children, ...props }) {
         position={[0, 0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
+        {...props}
       />
       <Cards
         category="AUTUMN"
@@ -53,6 +55,7 @@ function Scene({ children, ...props }) {
         len={Math.PI / 2}
         onPointerOver={hover}
         onPointerOut={hover}
+        {...props}
       />
       <Cards
         category="WINTER"
@@ -61,21 +64,29 @@ function Scene({ children, ...props }) {
         position={[0, -0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
+        {...props}
       />
-      <ActiveCard hovered={hovered} />
+      <ActiveCard hovered={hovered} {...props} />
     </group>
   )
 }
 
 function Cards({
   category,
-  data,
   from = 0,
   len = Math.PI * 2,
   radius = 5.25,
   onPointerOver,
   onPointerOut,
   ...props
+}: {
+  category: string
+  from: number
+  len: number
+  onPointerOver: any
+  onPointerOut: any
+  position?: any
+  urls: string[]
 }) {
   const [hovered, hover] = useState(null)
   const amount = Math.round(len * 33)
@@ -98,7 +109,7 @@ function Cards({
         return (
           <Card
             key={angle}
-            onPointerOver={(e) => {
+            onPointerOver={(e: any) => {
               e.stopPropagation()
               hover(i)
               onPointerOver(i)
@@ -111,7 +122,7 @@ function Cards({
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
             hovered={hovered === i}
-            url={`./images/img${Math.floor(i % 56) + 1}.jpg`}
+            url={props.urls.at(Math.floor(i % 56)) as string}
           />
         )
       })}
@@ -119,8 +130,21 @@ function Cards({
   )
 }
 
-function Card({ url, active, hovered, ...props }) {
-  const ref = useRef()
+function Card({
+  url,
+  active,
+  hovered,
+  ...props
+}: {
+  url: string
+  active: boolean
+  hovered: any
+  position: any
+  rotation: any
+  onPointerOver: any
+  onPointerOut: any
+}) {
+  const ref = useRef<Mesh>(null!)
   useFrame((state, delta) => {
     const f = hovered ? 1.4 : active ? 1.25 : 1
     easing.damp3(ref.current.position, [0, hovered ? 0.25 : 0, 0], 0.1, delta)
@@ -128,13 +152,13 @@ function Card({ url, active, hovered, ...props }) {
   })
   return (
     <group {...props}>
-      <Image ref={ref} url={url} scale={[1.618, 1, 1]} side={THREE.DoubleSide} />
+      <Image ref={ref} url={url} scale={[1.618, 1, 1]} side={DoubleSide} />
     </group>
   )
 }
 
-function ActiveCard({ hovered, ...props }) {
-  const ref = useRef()
+function ActiveCard({ hovered, ...props }: { hovered: any; urls: string[] }) {
+  const ref = useRef<Mesh>(null!)
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => {
     ref.current.material.zoom = 0.8
@@ -152,7 +176,7 @@ function ActiveCard({ hovered, ...props }) {
         ref={ref}
         transparent
         position={[0, 1.5, 0]}
-        url={`./images/img${Math.floor(hovered % 56) + 1}.jpg`}
+        url={props.urls.at(Math.floor(hovered % 56)) as string}
       >
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}

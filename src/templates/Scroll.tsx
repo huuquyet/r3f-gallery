@@ -7,8 +7,7 @@
 // 3 - enjoy
 import { addEffect, useFrame } from '@react-three/fiber'
 import Lenis from '@studio-freight/lenis'
-import { type ReactNode, useEffect } from 'react'
-import { useRef } from 'react'
+import { type ReactNode, useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 const state = {

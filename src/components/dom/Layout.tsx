@@ -19,18 +19,6 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-      <Scene
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-        }}
-        eventSource={ref}
-        eventPrefix="client"
-      />
     </div>
   )
 }

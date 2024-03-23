@@ -1,25 +1,22 @@
 import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef, useState } from 'react'
-import * as THREE from 'three'
+import { BufferGeometry, Color, type Group, LineBasicMaterial, type Mesh, Vector3 } from 'three'
 import { proxy, useSnapshot } from 'valtio'
-import imgList from '../../public/imgList'
 
-const material = new THREE.LineBasicMaterial({ color: 'white' })
-const geometry = new THREE.BufferGeometry().setFromPoints([
-  new THREE.Vector3(0, -0.5, 0),
-  new THREE.Vector3(0, 0.5, 0),
+const material = new LineBasicMaterial({ color: 'white' })
+const geometry = new BufferGeometry().setFromPoints([
+  new Vector3(0, -0.5, 0),
+  new Vector3(0, 0.5, 0),
 ])
 const state = proxy({
   clicked: null,
-  urls: Object.entries(imgList).map(([_, url]) => url),
 })
 
-function Minimap() {
-  const ref = useRef()
+function Minimap({ urls }: { urls: string[] }) {
+  const ref = useRef<Group>(null!)
   const scroll = useScroll()
-  const { urls } = useSnapshot(state)
   const { height } = useThree((state) => state.viewport)
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
@@ -45,10 +42,16 @@ function Minimap() {
   )
 }
 
-function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
-  const ref = useRef()
+function Item({
+  index,
+  position,
+  scale,
+  c = new Color(),
+  ...props
+}: { index: number; position: any; scale: any; url: string; length: number }) {
+  const ref = useRef<Mesh>(null!)
   const scroll = useScroll()
-  const { clicked, urls } = useSnapshot(state)
+  const { clicked } = useSnapshot(state)
   const [hovered, hover] = useState(false)
   const click = () => {
     state.clicked = index === clicked ? null : index
@@ -56,7 +59,7 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   const over = () => hover(true)
   const out = () => hover(false)
   useFrame((state, delta) => {
-    const y = scroll.curve(index / urls.length - 1.5 / urls.length, 4 / urls.length)
+    const y = scroll.curve(index / props.length - 1.5 / props.length, 4 / props.length)
     easing.damp3(
       ref.current.scale,
       [clicked === index ? 4.7 : scale[0], clicked === index ? 5 : 4 + y, 1],
@@ -98,16 +101,26 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   )
 }
 
-export default function Horizontal({ w = 0.7, gap = 0.15 }) {
-  const { urls } = useSnapshot(state)
+export default function Horizontal({
+  urls,
+  w = 0.7,
+  gap = 0.15,
+}: { urls: string[]; w: number; gap: number }) {
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   return (
     <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
-      <Minimap />
+      <Minimap urls={urls} />
       <Scroll>
         {urls.map((url, i) => (
-          <Item key={url} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />
+          <Item
+            key={url}
+            index={i}
+            position={[i * xW, 0, 0]}
+            scale={[w, 4, 1]}
+            url={url}
+            length={urls.length}
+          />
         ))}
       </Scroll>
     </ScrollControls>

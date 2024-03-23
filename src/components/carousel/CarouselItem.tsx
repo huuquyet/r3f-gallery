@@ -1,10 +1,25 @@
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
+import type { Group } from 'three'
 import { Plane } from './Plane'
 
-export const CarouselItem = ({ index, width, height, setActivePlane, activePlane, item }) => {
-  const $root = useRef()
+export const CarouselItem = ({
+  index,
+  width,
+  height,
+  setActivePlane,
+  activePlane,
+  item,
+}: {
+  index: number
+  width: number
+  height: number
+  item: string
+  activePlane: any
+  setActivePlane: any
+}) => {
+  const $root = useRef<Group>(null!)
   const [hover, setHover] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [isCloseActive, setCloseActive] = useState(false)
@@ -16,7 +31,7 @@ export const CarouselItem = ({ index, width, height, setActivePlane, activePlane
       setIsActive(activePlane === index)
       setCloseActive(true)
     } else {
-      setIsActive(null)
+      setIsActive(false)
     }
   }, [activePlane])
 
@@ -43,7 +58,7 @@ export const CarouselItem = ({ index, width, height, setActivePlane, activePlane
     })
   }, [hover, isActive])
 
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     e.stopPropagation()
     if (!isActive) return
     setActivePlane(null)
@@ -62,7 +77,6 @@ export const CarouselItem = ({ index, width, height, setActivePlane, activePlane
       }}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      onKeyPress={() => {}}
     >
       <Plane width={width} height={height} texture={item} active={isActive} />
 

@@ -1,3 +1,5 @@
+const { redirect } = require('next/dist/server/api-utils')
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -12,6 +14,15 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 })
 
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/cards',
+        permanent: true,
+      }
+    ]
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
