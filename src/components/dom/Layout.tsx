@@ -1,24 +1,19 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { type ReactNode, useRef } from 'react'
-const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
+import Header from '@/header'
+import Loading from '@/loading'
+import { Canvas } from '@react-three/fiber'
+import { type ReactNode, Suspense, useRef } from 'react'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement>(null!)
 
   return (
-    <div
-      ref={ref}
-      style={{
-        position: 'relative',
-        width: ' 100%',
-        height: '100%',
-        overflow: 'auto',
-        touchAction: 'auto',
-      }}
-    >
-      {children}
+    <div ref={ref} className="wrapper">
+      <Canvas>
+        <Header />
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </Canvas>
     </div>
   )
 }

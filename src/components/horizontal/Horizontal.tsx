@@ -110,11 +110,10 @@ function Item({
 }
 
 export default function Horizontal({
-  urls,
+  textures,
   w = 0.7,
   gap = 0.15,
-}: { urls: string[]; w: number; gap: number }) {
-  const textures: Texture[] = useTexture(urls)
+}: { textures: Texture[]; w: number; gap: number }) {
   const { viewport } = useThree()
   const xW = w + gap
   return (

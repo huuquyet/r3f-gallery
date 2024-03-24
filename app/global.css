@@ -11,7 +11,8 @@
   }
 
   :root {
-    font-size: 13px;
+    font-size: 1em;
+    text-size-adjust: none;
     --color-text: #a0a0a0;
     --color-bg: #151515;
     --color-link: #696969;
@@ -26,9 +27,23 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
-    scroll-behavior: none;
+    overscroll-behavior: none;
     height: 100%;
     user-select: none;
+  }
+
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    touch-action: auto;
+  }
+
+  .top {
+    height: 100%;
+    width: 100%;
+    transform: none !important;
   }
 
   .header {
@@ -71,7 +86,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     flex-direction: column;
   }
 

@@ -28,8 +28,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-export default function Carousel({ urls }: { urls: string[] }) {
-  const textures: Texture[] = useTexture(urls)
+export default function Carousel({ textures }: { textures: Texture[] }) {
   const [$root, setRoot] = useState()
   const $post = useRef()
 

@@ -7,8 +7,7 @@ import { DoubleSide, type Group, type Mesh, type Texture } from 'three'
 
 extend(geometry)
 
-export default function CardsDemo({ urls }: { urls: string[] }) {
-  const textures: Texture[] = useTexture(urls)
+export default function CardsDemo({ textures }: { textures: Texture[] }) {
   return (
     <ScrollControls pages={4} infinite>
       <Scene position={[0, 1.5, 0]} textures={textures} />
@@ -101,7 +100,7 @@ function Cards({
           Math.cos(textPosition) * radius * 1.4,
         ]}
       >
-        <Text fontSize={0.25} anchorX="center" color="#e9e9e9" fontWeight={600}>
+        <Text fontSize={0.5} anchorX="center" color="#e9e9e9" fontWeight={600}>
           {category}
         </Text>
       </Billboard>

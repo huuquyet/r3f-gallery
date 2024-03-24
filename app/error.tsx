@@ -1,6 +1,6 @@
 'use client'
 
-import Header from '@/header'
+import { Html } from '@react-three/drei'
 
 export default function Error({
   error,
@@ -10,14 +10,13 @@ export default function Error({
   reset: () => void
 }) {
   return (
-    <>
-      <Header />
+    <Html>
       <div className="error">
         <h2>Something went wrong!</h2>
         <button type="button" onClick={() => reset()}>
           Try again
         </button>
       </div>
-    </>
+    </Html>
   )
 }

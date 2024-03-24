@@ -1,26 +1,21 @@
 'use client'
 
-import Header from '@/header'
 import imgList from '@/utils/imgList'
-import { Canvas } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
-import { Suspense } from 'react'
+import type { Texture } from 'three'
 
 export default function Page() {
   const params = useParams()
   const Component = dynamic(() => import(`@/components/${params.slug}`), {})
 
   const urls = Object.entries(imgList).map(([_, url]) => url)
+  const textures: Texture[] = useTexture(urls.reverse())
 
   return (
     <>
-      <Header titlePre={params.slug as string} />
-      <Canvas gl={{ antialias: false }} dpr={[1, 1.5]}>
-        <Suspense fallback={<h1 className="loading">Loading...</h1>}>
-          <Component urls={urls.reverse()} />
-        </Suspense>
-      </Canvas>
+      <Component textures={textures} />
     </>
   )
 }
