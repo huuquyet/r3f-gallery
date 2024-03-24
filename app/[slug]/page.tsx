@@ -1,7 +1,6 @@
 'use client'
 
 import Header from '@/header'
-import Loading from '@/loading'
 import imgList from '@/utils/imgList'
 import { Canvas } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
@@ -18,8 +17,8 @@ export default function Page() {
     <>
       <Header titlePre={params.slug as string} />
       <Canvas gl={{ antialias: false }} dpr={[1, 1.5]}>
-        <Suspense fallback={<Loading />}>
-          <Component urls={urls} />
+        <Suspense fallback={<h1 className="loading">Loading...</h1>}>
+          <Component urls={urls.reverse()} />
         </Suspense>
       </Canvas>
     </>

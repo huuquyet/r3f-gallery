@@ -1,7 +1,7 @@
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
-import type { Group } from 'three'
+import type { Group, Texture } from 'three'
 import { Plane } from './Plane'
 
 export const CarouselItem = ({
@@ -10,12 +10,12 @@ export const CarouselItem = ({
   height,
   setActivePlane,
   activePlane,
-  item,
+  texture,
 }: {
   index: number
   width: number
   height: number
-  item: string
+  texture: Texture
   activePlane: any
   setActivePlane: any
 }) => {
@@ -78,7 +78,7 @@ export const CarouselItem = ({
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <Plane width={width} height={height} texture={item} active={isActive} />
+      <Plane width={width} height={height} texture={texture} active={isActive} />
 
       {isCloseActive ? (
         <mesh position={[0, 0, 0.01]} onClick={handleClose}>

@@ -1,8 +1,10 @@
 import { getPiramidalIndex, lerp } from '@/utils'
+import { useTexture } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
+import type { Texture } from 'three'
 import { CarouselItem } from './CarouselItem'
 import { PostProcessing } from './PostProcessing'
 
@@ -27,6 +29,7 @@ gsap.defaults({
 Carousel
 ------------------------------*/
 export default function Carousel({ urls }: { urls: string[] }) {
+  const textures: Texture[] = useTexture(urls)
   const [$root, setRoot] = useState()
   const $post = useRef()
 
@@ -149,14 +152,14 @@ export default function Carousel({ urls }: { urls: string[] }) {
   const renderSlider = () => {
     return (
       <group ref={setRoot}>
-        {urls.map((item, i) => (
+        {textures.map((texture, i) => (
           <CarouselItem
             width={planeSettings.width}
             height={planeSettings.height}
             setActivePlane={setActivePlane}
             activePlane={activePlane}
-            key={item}
-            item={item}
+            key={texture.id}
+            texture={texture}
             index={i}
           />
         ))}

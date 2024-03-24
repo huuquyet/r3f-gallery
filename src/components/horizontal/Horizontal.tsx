@@ -1,8 +1,16 @@
-import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
+import { Image, Scroll, ScrollControls, useScroll, useTexture } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef, useState } from 'react'
-import { BufferGeometry, Color, type Group, LineBasicMaterial, type Mesh, Vector3 } from 'three'
+import {
+  BufferGeometry,
+  Color,
+  type Group,
+  LineBasicMaterial,
+  type Mesh,
+  type Texture,
+  Vector3,
+} from 'three'
 import { proxy, useSnapshot } from 'valtio'
 
 const material = new LineBasicMaterial({ color: 'white' })
@@ -14,28 +22,28 @@ const state = proxy({
   clicked: null,
 })
 
-function Minimap({ urls }: { urls: string[] }) {
+function Minimap({ textures }: { textures: Texture[] }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
-  const { height } = useThree((state) => state.viewport)
+  const { viewport } = useThree()
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
       // Give me a value between 0 and 1
       //   starting at the position of my item
       //   ranging across 4 / total length
       //   make it a sine, so the value goes from 0 to 1 to 0.
-      const y = scroll.curve(index / urls.length - 1.5 / urls.length, 4 / urls.length)
+      const y = scroll.curve(index / textures.length - 1.5 / textures.length, 4 / textures.length)
       easing.damp(child.scale, 'y', 0.15 + y / 6, 0.15, delta)
     })
   })
   return (
     <group ref={ref}>
-      {urls.map((url, i) => (
+      {textures.map((texture, i) => (
         <line
-          key={url}
+          key={texture.id}
           geometry={geometry}
           material={material}
-          position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]}
+          position={[i * 0.06 - textures.length * 0.03, -viewport.height / 2 + 0.6, 0]}
         />
       ))}
     </group>
@@ -48,7 +56,7 @@ function Item({
   scale,
   c = new Color(),
   ...props
-}: { index: number; position: any; scale: any; url: string; length: number }) {
+}: { index: number; position: any; scale: any; texture: Texture; length: number }) {
   const ref = useRef<Mesh>(null!)
   const scroll = useScroll()
   const { clicked } = useSnapshot(state)
@@ -106,20 +114,25 @@ export default function Horizontal({
   w = 0.7,
   gap = 0.15,
 }: { urls: string[]; w: number; gap: number }) {
-  const { width } = useThree((state) => state.viewport)
+  const textures: Texture[] = useTexture(urls)
+  const { viewport } = useThree()
   const xW = w + gap
   return (
-    <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
-      <Minimap urls={urls} />
+    <ScrollControls
+      horizontal
+      damping={0.1}
+      pages={(viewport.width - xW + textures.length * xW) / viewport.width}
+    >
+      <Minimap textures={textures} />
       <Scroll>
-        {urls.reverse().map((url, i) => (
+        {textures.map((texture, i) => (
           <Item
-            key={url}
+            key={texture.id}
             index={i}
             position={[i * xW, 0, 0]}
             scale={[w, 4, 1]}
-            url={url}
-            length={urls.length}
+            texture={texture}
+            length={textures.length}
           />
         ))}
       </Scroll>

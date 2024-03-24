@@ -1,8 +1,7 @@
-import { useTexture } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
-import type { Mesh } from 'three'
+import type { Mesh, Texture } from 'three'
 
 export const Plane = ({
   texture,
@@ -10,10 +9,9 @@ export const Plane = ({
   height,
   active,
   ...props
-}: { texture: string; width: number; height: number; active: boolean }) => {
+}: { texture: Texture; width: number; height: number; active: boolean }) => {
   const $mesh = useRef<Mesh>(null!)
   const { viewport } = useThree()
-  const tex = useTexture(texture)
 
   useEffect(() => {
     if ($mesh.current.material) {
@@ -37,10 +35,10 @@ export const Plane = ({
       uniforms: {
         uProgress: { value: 0 },
         uZoomScale: { value: { x: 1, y: 1 } },
-        uTex: { value: tex },
+        uTex: { value: texture },
         uRes: { value: { x: 1, y: 1 } },
         uImageRes: {
-          value: { x: tex.source.data.width, y: tex.source.data.height },
+          value: { x: texture.source.data.width, y: texture.source.data.height },
         },
       },
       vertexShader: /* glsl */ `
@@ -89,7 +87,7 @@ export const Plane = ({
         }
       `,
     }),
-    [tex]
+    [texture]
   )
 
   return (

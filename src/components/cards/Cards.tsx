@@ -1,21 +1,22 @@
-import { Billboard, Image, ScrollControls, Text, useScroll } from '@react-three/drei'
+import { Billboard, Image, ScrollControls, Text, useScroll, useTexture } from '@react-three/drei'
 import { extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { DoubleSide, type Group, type Mesh } from 'three'
+import { DoubleSide, type Group, type Mesh, type Texture } from 'three'
 
 extend(geometry)
 
 export default function CardsDemo({ urls }: { urls: string[] }) {
+  const textures: Texture[] = useTexture(urls)
   return (
     <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} urls={urls.reverse()} />
+      <Scene position={[0, 1.5, 0]} textures={textures} />
     </ScrollControls>
   )
 }
 
-function Scene({ position, ...props }: { position: any; urls: string[] }) {
+function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
@@ -86,7 +87,7 @@ function Cards({
   onPointerOver: any
   onPointerOut: any
   position?: any
-  urls: string[]
+  textures: Texture[]
 }) {
   const [hovered, hover] = useState(null)
   const amount = Math.round(len * 26)
@@ -122,7 +123,7 @@ function Cards({
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
             hovered={hovered === i}
-            url={props.urls.at(Math.floor(i % 56)) as string}
+            texture={props.textures.at(Math.floor(i % 56))!}
           />
         )
       })}
@@ -131,12 +132,12 @@ function Cards({
 }
 
 function Card({
-  url,
+  texture,
   active,
   hovered,
   ...props
 }: {
-  url: string
+  texture: Texture
   active: boolean
   hovered: any
   position: any
@@ -152,12 +153,12 @@ function Card({
   })
   return (
     <group {...props}>
-      <Image ref={ref} url={url} scale={[1.618, 1, 1]} side={DoubleSide} />
+      <Image ref={ref} texture={texture} scale={[1.618, 1, 1]} side={DoubleSide} />
     </group>
   )
 }
 
-function ActiveCard({ hovered, ...props }: { hovered: any; urls: string[] }) {
+function ActiveCard({ hovered, ...props }: { hovered: any; textures: Texture[] }) {
   const ref = useRef<Mesh>(null!)
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => {
@@ -176,7 +177,7 @@ function ActiveCard({ hovered, ...props }: { hovered: any; urls: string[] }) {
         ref={ref}
         transparent
         position={[0, 1.5, 0]}
-        url={props.urls.at(Math.floor(hovered % 56)) as string}
+        texture={props.textures.at(Math.floor(hovered % 56))!}
       >
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}
