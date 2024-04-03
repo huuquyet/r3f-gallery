@@ -1,5 +1,3 @@
-const { redirect } = require('next/dist/server/api-utils')
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
