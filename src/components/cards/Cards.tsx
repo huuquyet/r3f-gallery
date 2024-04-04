@@ -1,4 +1,5 @@
-import { Billboard, Image, ScrollControls, Text, useScroll, useTexture } from '@react-three/drei'
+import { useTextureList } from '@/components/dom/TextureProvider'
+import { Billboard, Image, ScrollControls, Text, useScroll } from '@react-three/drei'
 import { extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
@@ -7,15 +8,15 @@ import { DoubleSide, type Group, type Mesh, type Texture } from 'three'
 
 extend(geometry)
 
-export default function CardsDemo({ textures }: { textures: Texture[] }) {
+export default function CardsDemo() {
   return (
     <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} textures={textures} />
+      <Scene position={[0, 1.5, 0]} />
     </ScrollControls>
   )
 }
 
-function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
+function Scene({ position, ...props }: { position: any }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
@@ -38,7 +39,6 @@ function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
         len={Math.PI / 4}
         onPointerOver={hover}
         onPointerOut={hover}
-        {...props}
       />
       <Cards
         category="SUMMER"
@@ -47,7 +47,6 @@ function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
         position={[0, 0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
-        {...props}
       />
       <Cards
         category="AUTUMN"
@@ -55,7 +54,6 @@ function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
         len={Math.PI / 2}
         onPointerOver={hover}
         onPointerOut={hover}
-        {...props}
       />
       <Cards
         category="WINTER"
@@ -64,9 +62,8 @@ function Scene({ position, ...props }: { position: any; textures: Texture[] }) {
         position={[0, -0.4, 0]}
         onPointerOver={hover}
         onPointerOut={hover}
-        {...props}
       />
-      <ActiveCard hovered={hovered} {...props} />
+      <ActiveCard hovered={hovered} />
     </group>
   )
 }
@@ -83,11 +80,12 @@ function Cards({
   category: string
   from: number
   len: number
+  radius?: number
   onPointerOver: any
   onPointerOut: any
   position?: any
-  textures: Texture[]
 }) {
+  const { textures } = useTextureList()
   const [hovered, hover] = useState(null)
   const amount = Math.round(len * 26)
   const textPosition = from + (amount / 2 / amount) * len
@@ -122,7 +120,7 @@ function Cards({
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
             hovered={hovered === i}
-            texture={props.textures.at(Math.floor(i % 56))!}
+            texture={textures.at(Math.floor(i % 56))!}
           />
         )
       })}
@@ -157,7 +155,8 @@ function Card({
   )
 }
 
-function ActiveCard({ hovered, ...props }: { hovered: any; textures: Texture[] }) {
+function ActiveCard({ hovered, ...props }: { hovered: any }) {
+  const { textures } = useTextureList()
   const ref = useRef<Mesh>(null!)
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => {
@@ -176,7 +175,7 @@ function ActiveCard({ hovered, ...props }: { hovered: any; textures: Texture[] }
         ref={ref}
         transparent
         position={[0, 1.5, 0]}
-        texture={props.textures.at(Math.floor(hovered % 56))!}
+        texture={textures.at(Math.floor(hovered % 56))!}
       >
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}

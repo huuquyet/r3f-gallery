@@ -4,6 +4,7 @@ import Header from '@/header'
 import Loading from '@/loading'
 import { Canvas } from '@react-three/fiber'
 import { type ReactNode, Suspense, useRef } from 'react'
+import TextureProvider from './TextureProvider'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null!)
@@ -12,7 +13,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
     <div ref={ref} className="wrapper">
       <Canvas>
         <Header />
-        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <Suspense fallback={<Loading />}>
+          <TextureProvider>{children}</TextureProvider>
+        </Suspense>
       </Canvas>
     </div>
   )

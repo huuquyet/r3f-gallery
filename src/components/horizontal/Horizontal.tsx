@@ -1,4 +1,4 @@
-import { Image, Scroll, ScrollControls, useScroll, useTexture } from '@react-three/drei'
+import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef, useState } from 'react'
@@ -12,6 +12,7 @@ import {
   Vector3,
 } from 'three'
 import { proxy, useSnapshot } from 'valtio'
+import { useTextureList } from '../dom/TextureProvider'
 
 const material = new LineBasicMaterial({ color: 'white' })
 const geometry = new BufferGeometry().setFromPoints([
@@ -22,10 +23,12 @@ const state = proxy({
   clicked: null,
 })
 
-function Minimap({ textures }: { textures: Texture[] }) {
+function Minimap() {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const { viewport } = useThree()
+  const { textures } = useTextureList()
+
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
       // Give me a value between 0 and 1
@@ -56,7 +59,7 @@ function Item({
   scale,
   c = new Color(),
   ...props
-}: { index: number; position: any; scale: any; texture: Texture; length: number }) {
+}: { index: number; position: any; scale: any; c?: Color; texture: Texture; length: number }) {
   const ref = useRef<Mesh>(null!)
   const scroll = useScroll()
   const { clicked } = useSnapshot(state)
@@ -109,11 +112,8 @@ function Item({
   )
 }
 
-export default function Horizontal({
-  textures,
-  w = 0.7,
-  gap = 0.15,
-}: { textures: Texture[]; w: number; gap: number }) {
+export default function Horizontal({ w = 0.7, gap = 0.15 }: { w: number; gap: number }) {
+  const { textures } = useTextureList()
   const { viewport } = useThree()
   const xW = w + gap
   return (
@@ -122,7 +122,7 @@ export default function Horizontal({
       damping={0.1}
       pages={(viewport.width - xW + textures.length * xW) / viewport.width}
     >
-      <Minimap textures={textures} />
+      <Minimap />
       <Scroll>
         {textures.map((texture, i) => (
           <Item
