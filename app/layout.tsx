@@ -3,6 +3,7 @@ import Layout from '@/providers/Layout'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import Header from './header'
 
 const APP_NAME = 'R3F Gallery'
 const APP_DEFAULT_TITLE = 'Awesome Gallery using Next.js + React Three Fiber'
@@ -55,7 +56,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="antialiased">
+      {/*
+        <head /> will contain the components returned by the nearest parent
+        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
+      */}
+      <head />
       <body>
+        <Header />
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <Layout>{children}</Layout>
         <Analytics />

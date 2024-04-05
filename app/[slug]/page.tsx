@@ -1,11 +1,18 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useParams } from 'next/navigation'
+import { Route, Switch, useLocation } from 'wouter'
 
 export default function Page() {
-  const params = useParams()
-  const Component = dynamic(() => import(`@/components/${params.slug}`), { ssr: false })
+  const [path] = useLocation()
+  const slug = path.slice(1, path.length)
+  const Component = dynamic(() => import(`@/components/${slug}`), { ssr: false })
 
-  return <Component />
+  return (
+    <Switch>
+      <Route path={path}>
+        <Component />
+      </Route>
+    </Switch>
+  )
 }

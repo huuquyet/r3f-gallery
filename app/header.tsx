@@ -1,6 +1,6 @@
-import { Html } from '@react-three/drei'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+'use client'
+
+import { Link, useLocation } from 'wouter'
 
 const navItems: { label: string; slug?: string; link?: string }[] = [
   { label: 'Cards', slug: 'cards' },
@@ -10,26 +10,24 @@ const navItems: { label: string; slug?: string; link?: string }[] = [
 ]
 
 export default function Header() {
-  const pathname = usePathname()
+  const [pathname] = useLocation()
 
   return (
-    <Html wrapperClass="top">
-      <header className="header">
-        <ul>
-          {navItems.map(({ label, slug, link }) => (
-            <li key={label}>
-              {slug ? (
-                <Link href={`/${slug}`} className={pathname === `/${slug}` ? 'active' : undefined}>
-                  {label}
-                </Link>
-              ) : (
-                <ExtLink href={link}>{label}</ExtLink>
-              )}
-            </li>
-          ))}
-        </ul>
-      </header>
-    </Html>
+    <header className="header">
+      <ul>
+        {navItems.map(({ label, slug, link }) => (
+          <li key={label}>
+            {slug ? (
+              <Link to={`/${slug}`} className={pathname === `/${slug}` ? 'active' : undefined}>
+                {label}
+              </Link>
+            ) : (
+              <ExtLink href={link}>{label}</ExtLink>
+            )}
+          </li>
+        ))}
+      </ul>
+    </header>
   )
 }
 

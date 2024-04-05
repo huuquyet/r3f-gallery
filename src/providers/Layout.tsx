@@ -1,6 +1,5 @@
 'use client'
 
-import Header from '@/header'
 import Loading from '@/loading'
 import { Canvas } from '@react-three/fiber'
 import { type ReactNode, Suspense, useRef } from 'react'
@@ -11,7 +10,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <Canvas ref={ref} className="wrapper">
-      <Header />
       <Suspense fallback={<Loading />}>
         <TextureProvider>{children}</TextureProvider>
       </Suspense>

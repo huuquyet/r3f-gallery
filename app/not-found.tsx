@@ -1,7 +1,7 @@
 'use client'
 
 import { Html } from '@react-three/drei'
-import Link from 'next/link'
+import { Link } from 'wouter'
 
 export default function NotFound() {
   return (
@@ -9,7 +9,7 @@ export default function NotFound() {
       <div className="error">
         <h2>Not Found</h2>
         <p>Could not find requested resource</p>
-        <Link href="/">Return Home</Link>
+        <Link to="/">Return Home</Link>
       </div>
     </Html>
   )
