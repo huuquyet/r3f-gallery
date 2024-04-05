@@ -1,9 +1,12 @@
-import { getPiramidalIndex, lerp } from '@/utils'
+'use client'
+
+import { useTextureList } from '@/providers/TextureProvider'
+import { getPiramidalIndex } from '@/utils'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
-import { useTextureList } from '../dom/TextureProvider'
+import { MathUtils } from 'three'
 import { CarouselItem } from './CarouselItem'
 import { PostProcessing } from './PostProcessing'
 
@@ -69,9 +72,13 @@ export default function Carousel() {
 
     const active = Math.floor((progress.current / 100) * ($items.length - 1))
     $items.forEach((item: any, index: number) => displayItems(item, index, active))
-    speed.current = lerp(speed.current, Math.abs(oldProgress.current - progress.current), 0.1)
+    speed.current = MathUtils.lerp(
+      speed.current,
+      Math.abs(oldProgress.current - progress.current),
+      0.1
+    )
 
-    oldProgress.current = lerp(oldProgress.current, progress.current, 0.1)
+    oldProgress.current = MathUtils.lerp(oldProgress.current, progress.current, 0.1)
 
     if ($post.current) {
       $post.current.thickness = speed.current

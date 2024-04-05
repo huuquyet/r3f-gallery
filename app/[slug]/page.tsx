@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 
 export default function Page() {
   const params = useParams()
-  const Component = dynamic(() => import(`@/components/${params.slug}`), {})
+  const Component = dynamic(() => import(`@/components/${params.slug}`), { ssr: false })
 
   return <Component />
 }

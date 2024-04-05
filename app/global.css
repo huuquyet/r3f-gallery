@@ -11,8 +11,7 @@
   }
 
   :root {
-    font-size: 1em;
-    text-size-adjust: none;
+    font-size: 14px;
     --color-text: #a0a0a0;
     --color-bg: #151515;
     --color-link: #696969;
@@ -27,7 +26,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
-    overscroll-behavior: none;
+    /* overscroll-behavior: none; */
     height: 100%;
     user-select: none;
   }

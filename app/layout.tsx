@@ -1,5 +1,5 @@
-import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
+import Layout from '@/providers/Layout'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   },
   description: APP_DESCRIPTION,
   manifest: '/manifest.json',
+  metadataBase: new URL('https://${process.env.VERCEL_URL}'),
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',

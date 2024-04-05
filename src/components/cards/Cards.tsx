@@ -1,6 +1,8 @@
-import { useTextureList } from '@/components/dom/TextureProvider'
+'use client'
+
+import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Image, ScrollControls, Text, useScroll } from '@react-three/drei'
-import { extend, useFrame } from '@react-three/fiber'
+import { type Euler, type Vector3, extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
@@ -16,7 +18,7 @@ export default function CardsDemo() {
   )
 }
 
-function Scene({ position, ...props }: { position: any }) {
+function Scene({ position, ...props }: { position: Vector3 }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
@@ -31,6 +33,7 @@ function Scene({ position, ...props }: { position: any }) {
     )
     state.camera.lookAt(0, 0, 0)
   })
+
   return (
     <group ref={ref} {...props}>
       <Cards
@@ -83,12 +86,13 @@ function Cards({
   radius?: number
   onPointerOver: any
   onPointerOut: any
-  position?: any
+  position?: Vector3
 }) {
   const { textures } = useTextureList()
   const [hovered, hover] = useState(null)
   const amount = Math.round(len * 26)
   const textPosition = from + (amount / 2 / amount) * len
+
   return (
     <group {...props}>
       <Billboard
@@ -104,6 +108,8 @@ function Cards({
       </Billboard>
       {Array.from({ length: amount - 3 /* minus 3 images at the end, creates a gap */ }, (_, i) => {
         const angle = from + (i / amount) * len
+        const texture = textures.at(Math.floor(i % textures.length))!
+
         return (
           <Card
             key={angle}
@@ -120,7 +126,7 @@ function Cards({
             rotation={[0, Math.PI / 2 + angle, 0]}
             active={hovered !== null}
             hovered={hovered === i}
-            texture={textures.at(Math.floor(i % 56))!}
+            texture={texture}
           />
         )
       })}
@@ -137,8 +143,8 @@ function Card({
   texture: Texture
   active: boolean
   hovered: any
-  position: any
-  rotation: any
+  position: Vector3
+  rotation: Euler
   onPointerOver: any
   onPointerOut: any
 }) {
@@ -148,6 +154,7 @@ function Card({
     easing.damp3(ref.current.position, [0, hovered ? 0.25 : 0, 0], 0.1, delta)
     easing.damp3(ref.current.scale, [1.618 * f, 1 * f, 1], 0.15, delta)
   })
+
   return (
     <group {...props}>
       <Image ref={ref} texture={texture} scale={[1.618, 1, 1]} side={DoubleSide} />
@@ -166,17 +173,14 @@ function ActiveCard({ hovered, ...props }: { hovered: any }) {
     easing.damp(ref.current.material, 'zoom', 1, 0.5, delta)
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
+  const texture = textures.at(Math.floor(hovered % textures.length))!
+
   return (
     <Billboard {...props}>
       <Text fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="#e9e9e9">
         {hovered !== null && `${name}\n${hovered}`}
       </Text>
-      <Image
-        ref={ref}
-        transparent
-        position={[0, 1.5, 0]}
-        texture={textures.at(Math.floor(hovered % 56))!}
-      >
+      <Image ref={ref} transparent position={[0, 1.5, 0]} texture={texture}>
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}
           args={[3.5, 1.618 * 3.5, 0.2]}

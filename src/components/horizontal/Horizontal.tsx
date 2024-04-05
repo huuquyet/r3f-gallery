@@ -1,3 +1,6 @@
+'use client'
+
+import { useTextureList } from '@/providers/TextureProvider'
 import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
@@ -12,7 +15,6 @@ import {
   Vector3,
 } from 'three'
 import { proxy, useSnapshot } from 'valtio'
-import { useTextureList } from '../dom/TextureProvider'
 
 const material = new LineBasicMaterial({ color: 'white' })
 const geometry = new BufferGeometry().setFromPoints([

@@ -1,3 +1,5 @@
+'use client'
+
 import imgList from '@/utils/imgList'
 import { useTexture } from '@react-three/drei'
 import { type ReactNode, createContext, useContext, useEffect, useState } from 'react'

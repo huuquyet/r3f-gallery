@@ -1,11 +1,14 @@
+'use client'
+
 import { MeshTransmissionMaterial } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { useControls } from 'leva'
-import { forwardRef } from 'react'
-import { Color } from 'three'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 
 export const PostProcessing = forwardRef((_, ref) => {
   const { viewport } = useThree()
+  const localRef = useRef(null)
+  useImperativeHandle(ref, () => localRef.current)
 
   const { active, ior } = useControls({
     active: {
@@ -22,8 +25,7 @@ export const PostProcessing = forwardRef((_, ref) => {
     <mesh position={[0, 0, 1]}>
       <planeGeometry args={[viewport.width, viewport.height]} />
       <MeshTransmissionMaterial
-        ref={ref}
-        background={new Color('#151515')}
+        ref={localRef}
         transmission={0.7}
         roughness={0}
         thickness={0}
