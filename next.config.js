@@ -29,7 +29,11 @@ const nextConfig = {
     styledComponents: true,
   },
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
-  images: {},
+  images: {
+    loader: 'default',
+    domains: ['localhost'],
+    path: '/_next/static/images',
+  },
   transpilePackages: ['three'],
   webpack(config, { isServer }) {
     if (!isServer) {

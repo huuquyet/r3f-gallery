@@ -17,20 +17,19 @@ export default function TextureProvider({ children, ...props }: { children: Reac
 
   if (value) {
     return <Fragment {...props}>{children}</Fragment>
-  } else {
-    const [textures, setTextures] = useState<Texture[]>([])
-    const urls = Object.entries(imgList).map(([_, url]) => url)
-    const textureList: Texture[] = useTexture(urls.reverse())
-    useEffect(() => {
-      setTextures(textureList)
-    }, [])
-
-    return (
-      <TextureContext.Provider {...props} value={{ textures, setTextures }}>
-        {children}
-      </TextureContext.Provider>
-    )
   }
+  const [textures, setTextures] = useState<Texture[]>([])
+  const urls = Object.entries(imgList).map(([_, url]) => url)
+  const textureList: Texture[] = useTexture(urls.reverse())
+  useEffect(() => {
+    setTextures(textureList)
+  }, [])
+
+  return (
+    <TextureContext.Provider {...props} value={{ textures, setTextures }}>
+      {children}
+    </TextureContext.Provider>
+  )
 }
 
 export const useTextureList = () => useContext(TextureContext) as TextureContextType
