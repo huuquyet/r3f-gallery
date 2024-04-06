@@ -36,7 +36,7 @@ export default function Carousel() {
 
   const [activePlane, setActivePlane] = useState(null)
   const prevActivePlane = usePrevious(activePlane)
-  const { viewport } = useThree()
+  const { width, height } = useThree((state) => state.viewport)
   const { textures } = useTextureList()
 
   /*--------------------
@@ -148,7 +148,7 @@ export default function Carousel() {
         onPointerLeave={handleUp}
         onPointerCancel={handleUp}
       >
-        <planeGeometry args={[viewport.width, viewport.height]} />
+        <planeGeometry args={[width, height]} />
         <meshBasicMaterial transparent={true} opacity={0} />
       </mesh>
     )

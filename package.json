@@ -15,7 +15,7 @@
     "vscode": "yarn dlx @yarnpkg/sdks vscode"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.5",
+    "@ducanh2912/next-pwa": "^10.2.6",
     "@react-three/drei": "^9.105.1",
     "@react-three/fiber": "^8.16.1",
     "@vercel/analytics": "^1.2.2",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
     "@next/bundle-analyzer": "^14.1.4",
-    "@types/node": "^20.12.4",
+    "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
     "@types/three": "^0.163.0",
     "autoprefixer": "^10.4.19",
@@ -41,7 +41,7 @@
     "postcss": "^8.4.38",
     "random-words": "^2.0.1",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "url-loader": "^4.1.1",
     "vercel": "latest"
   },

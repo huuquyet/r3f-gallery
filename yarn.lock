@@ -1446,13 +1446,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ducanh2912/next-pwa@npm:^10.2.5":
-  version: 10.2.5
-  resolution: "@ducanh2912/next-pwa@npm:10.2.5"
+"@ducanh2912/next-pwa@npm:^10.2.6":
+  version: 10.2.6
+  resolution: "@ducanh2912/next-pwa@npm:10.2.6"
   dependencies:
     clean-webpack-plugin: "npm:4.0.0"
     fast-glob: "npm:3.3.2"
-    semver: "npm:7.5.4"
+    semver: "npm:7.6.0"
     terser-webpack-plugin: "npm:5.3.10"
     workbox-build: "npm:7.0.0"
     workbox-core: "npm:7.0.0"
@@ -1461,7 +1461,7 @@ __metadata:
   peerDependencies:
     next: ">=14.0.0"
     webpack: ">=5.9.0"
-  checksum: 10/da90d61d55c33364cdfef6d5a13abfa3423068c17bb345503ee799849a87fda53ce53cd048dc545233cab8c3aa921113a2e208475ec88b828f50af0986baf674
+  checksum: 10/9624bbdd13a8952774d95f08d24830e50fc527cbc7ff80954021242e255290ae0f6186cccbe15353f2d0d5e2a9e9525e741153e433cce174546808dc6ae90e08
   languageName: node
   linkType: hard
 
@@ -2513,12 +2513,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.4":
-  version: 20.12.4
-  resolution: "@types/node@npm:20.12.4"
+"@types/node@npm:*, @types/node@npm:^20.12.5":
+  version: 20.12.5
+  resolution: "@types/node@npm:20.12.5"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/eab4ed07774b96ea77fc23eb27508dbfe094b52c8326764f5044c609c036a1570fd8708ba770e13db7ad7b69d8a834bf3a4e59fc2f1ade31d6501db76cf5a39b
+  checksum: 10/7b647ea6679016e4e58e1aa439c46b610230ffcbe19173911fbf1d1fa329ec6fd1eeba4e3e2d8743206d3b00d5a0cad75f1c90189e1d1ec057eb48df1a1dd747
   languageName: node
   linkType: hard
 
@@ -2714,10 +2714,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/go@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@vercel/go@npm:3.1.0"
-  checksum: 10/1c4d6bd526dd4c4443e1132be95334f2d3debf72e89f9a4d79e234d5f03dcf063e79466fa0612288084462b81a3d6c9e32c748de459ae86aee20e99376f8b0cc
+"@vercel/go@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@vercel/go@npm:3.1.1"
+  checksum: 10/21cd64c4eee186b0a65a3a12e9b2422cd35dc334f55b8f44bd4c6d061b44c4b120a55f020a9318d6355d2708104d140e2992fe2a923bcae8976e35701abe11b7
   languageName: node
   linkType: hard
 
@@ -6865,11 +6865,11 @@ __metadata:
   resolution: "r3f-gallery@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.6.4"
-    "@ducanh2912/next-pwa": "npm:^10.2.5"
+    "@ducanh2912/next-pwa": "npm:^10.2.6"
     "@next/bundle-analyzer": "npm:^14.1.4"
     "@react-three/drei": "npm:^9.105.1"
     "@react-three/fiber": "npm:^8.16.1"
-    "@types/node": "npm:^20.12.4"
+    "@types/node": "npm:^20.12.5"
     "@types/react": "npm:^18.2.74"
     "@types/three": "npm:^0.163.0"
     "@vercel/analytics": "npm:^1.2.2"
@@ -6887,7 +6887,7 @@ __metadata:
     tailwindcss: "npm:^3.4.3"
     three: "npm:^0.163.0"
     tunnel-rat: "npm:^0.1.2"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.4.4"
     url-loader: "npm:^4.1.1"
     valtio: "npm:^1.13.2"
     vercel: "npm:latest"
@@ -7381,18 +7381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.5.4":
-  version: 7.5.4
-  resolution: "semver@npm:7.5.4"
-  dependencies:
-    lru-cache: "npm:^6.0.0"
-  bin:
-    semver: bin/semver.js
-  checksum: 10/985dec0d372370229a262c737063860fabd4a1c730662c1ea3200a2f649117761a42184c96df62a0e885e76fbd5dace41087d6c1ac0351b13c0df5d6bcb1b5ac
-  languageName: node
-  linkType: hard
-
-"semver@npm:^7.3.5":
+"semver@npm:7.6.0, semver@npm:^7.3.5":
   version: 7.6.0
   resolution: "semver@npm:7.6.0"
   dependencies:
@@ -8387,13 +8376,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.4.3":
-  version: 5.4.3
-  resolution: "typescript@npm:5.4.3"
+"typescript@npm:^5.4.4":
+  version: 5.4.4
+  resolution: "typescript@npm:5.4.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/de4c69f49a7ad4b1ea66a6dcc8b055ac34eb56af059a069d8988dd811c5e649be07e042e5bf573e8d0ac3ec2f30e6c999aa651cd09f6e9cbc6113749e8b6be20
+  checksum: 10/bade322d88fd93c8179e262aca9ba7f7b4417c09117879819c87946578c782ab123e3acb4733046a6e38714c47ef927360045a1f9292a1bff3a05a6577d27ca2
   languageName: node
   linkType: hard
 
@@ -8407,13 +8396,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.4.3#optional!builtin<compat/typescript>":
-  version: 5.4.3
-  resolution: "typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"
+"typescript@patch:typescript@npm%3A^5.4.4#optional!builtin<compat/typescript>":
+  version: 5.4.4
+  resolution: "typescript@patch:typescript@npm%3A5.4.4#optional!builtin<compat/typescript>::version=5.4.4&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/5aedd97595582b08aadb8a70e8e3ddebaf5a9c1e5ad4d6503c2fcfc15329b5cf8d01145b09913e9555683ac16c5123a96be32b6d72614098ebd42df520eed9b1
+  checksum: 10/88aff3244c31d4c6ede05b4fd28732fc8935a7fc638f2a3dcbbb767d1ac98e4b077f21ec74bc97f43c9307bc3f27e2359def1d793f9918c3429a744408fd75b4
   languageName: node
   linkType: hard
 
@@ -8653,12 +8642,12 @@ __metadata:
   linkType: hard
 
 "vercel@npm:latest":
-  version: 33.6.3
-  resolution: "vercel@npm:33.6.3"
+  version: 33.7.0
+  resolution: "vercel@npm:33.7.0"
   dependencies:
     "@vercel/build-utils": "npm:7.11.0"
     "@vercel/fun": "npm:1.1.0"
-    "@vercel/go": "npm:3.1.0"
+    "@vercel/go": "npm:3.1.1"
     "@vercel/hydrogen": "npm:1.0.2"
     "@vercel/next": "npm:4.1.6"
     "@vercel/node": "npm:3.0.26"
@@ -8671,7 +8660,7 @@ __metadata:
   bin:
     vc: dist/index.js
     vercel: dist/index.js
-  checksum: 10/c9f63616fc64147f992e9c078ffa020257250c808788cb41ea44e1a617f719f926ea2d5fcbf86eeea52ff290e058ed7ad43a29709ef23c5841bd286eb8f26adf
+  checksum: 10/9b40fee420ce1c5b75abd941983628172a221579389f4d6dffeed12ba19400e406ef1ca6f7e6c1315c85e1374cf39c365a91efb942df2e2d0522c5eb8ca0cfb3
   languageName: node
   linkType: hard
 

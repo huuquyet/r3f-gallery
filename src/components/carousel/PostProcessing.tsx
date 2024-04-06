@@ -4,7 +4,7 @@ import { useControls } from 'leva'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 
 export const PostProcessing = forwardRef((_, ref) => {
-  const { viewport } = useThree()
+  const { width, height } = useThree((state) => state.viewport)
   const localRef = useRef(null)
   useImperativeHandle(ref, () => localRef.current)
 
@@ -21,7 +21,7 @@ export const PostProcessing = forwardRef((_, ref) => {
 
   return active ? (
     <mesh position={[0, 0, 1]}>
-      <planeGeometry args={[viewport.width, viewport.height]} />
+      <planeGeometry args={[width, height]} />
       <MeshTransmissionMaterial
         ref={localRef}
         transmission={0.7}
