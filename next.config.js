@@ -22,7 +22,7 @@ const nextConfig = {
     ]
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // true to ignore ts
   },
   // uncomment the following snippet if using styled components
   compiler: {
@@ -33,6 +33,7 @@ const nextConfig = {
     loader: 'default',
     domains: ['localhost'],
     path: '/_next/static/images',
+    formats: ['image/webp'],
   },
   transpilePackages: ['three'],
   webpack(config, { isServer }) {

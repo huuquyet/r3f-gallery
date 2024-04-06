@@ -50,6 +50,7 @@ export default function Carousel() {
   const oldProgress = useRef(0)
   const speed = useRef(0)
   const $items = useMemo(() => {
+    /* @ts-ignore */
     if ($root) return $root.children
   }, [$root])
 
@@ -81,6 +82,7 @@ export default function Carousel() {
     oldProgress.current = MathUtils.lerp(oldProgress.current, progress.current, 0.1)
 
     if ($post.current) {
+      /* @ts-ignore */
       $post.current.thickness = speed.current
     }
   })
@@ -157,6 +159,7 @@ export default function Carousel() {
   --------------------*/
   const renderSlider = () => {
     return (
+      /* @ts-ignore */
       <group ref={setRoot}>
         {textures.map((texture, i) => (
           <CarouselItem

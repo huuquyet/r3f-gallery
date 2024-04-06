@@ -1,5 +1,3 @@
-'use client'
-
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
@@ -66,6 +64,7 @@ export const CarouselItem = ({
     setActivePlane(null)
     setHover(false)
     clearTimeout(timeoutID.current)
+    /* @ts-ignore */
     timeoutID.current = setTimeout(() => {
       setCloseActive(false)
     }, 1500) // The duration of this timer depends on the duration of the plane's closing animation.

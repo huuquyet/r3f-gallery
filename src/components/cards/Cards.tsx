@@ -24,6 +24,7 @@ function Scene({ position, ...props }: { position: Vector3 }) {
   const [hovered, hover] = useState(null)
   useFrame((state, delta) => {
     ref.current.rotation.y = -scroll.offset * (Math.PI * 2) // Rotate contents
+    /* @ts-ignore */
     state.events.update() // Raycasts every frame rather than on pointer-move
     easing.damp3(
       state.camera.position,
@@ -115,7 +116,7 @@ function Cards({
             key={angle}
             onPointerOver={(e: any) => {
               e.stopPropagation()
-              hover(i)
+              hover(i as any)
               onPointerOver(i)
             }}
             onPointerOut={() => {
@@ -157,6 +158,7 @@ function Card({
 
   return (
     <group {...props}>
+      {/* @ts-ignore */}
       <Image ref={ref} texture={texture} scale={[1.618, 1, 1]} side={DoubleSide} />
     </group>
   )
@@ -165,12 +167,15 @@ function Card({
 function ActiveCard({ hovered, ...props }: { hovered: any }) {
   const { textures } = useTextureList()
   const ref = useRef<Mesh>(null!)
+  /* @ts-ignore */
   const name = useMemo(() => generate({ exactly: 2 }).join(' '), [hovered])
   useLayoutEffect(() => {
+    /* @ts-ignore */
     ref.current.material.zoom = 0.8
   }, [hovered])
   useFrame((state, delta) => {
     easing.damp(ref.current.material, 'zoom', 1, 0.5, delta)
+    /* @ts-ignore */
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
   const texture = textures.at(Math.floor(hovered % textures.length))!
@@ -181,6 +186,7 @@ function ActiveCard({ hovered, ...props }: { hovered: any }) {
         {hovered !== null && `${name}\n${hovered}`}
       </Text>
       <Image ref={ref} transparent position={[0, 1.5, 0]} texture={texture}>
+        {/* @ts-ignore */}
         <roundedPlaneGeometry
           parameters={{ width: 3.5, height: 1.618 * 3.5 }}
           args={[3.5, 1.618 * 3.5, 0.2]}

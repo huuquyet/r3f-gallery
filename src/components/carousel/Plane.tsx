@@ -1,5 +1,3 @@
-'use client'
-
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
@@ -18,13 +16,17 @@ export const Plane = ({
   useEffect(() => {
     if ($mesh.current.material) {
       //  Setting the 'uZoomScale' uniform in the 'Plane' component to resize the texture proportionally to the dimensions of the viewport.
+      /* @ts-ignore */
       $mesh.current.material.uniforms.uZoomScale.value.x = viewport.width / width
+      /* @ts-ignore */
       $mesh.current.material.uniforms.uZoomScale.value.y = viewport.height / height
 
+      /* @ts-ignore */
       gsap.to($mesh.current.material.uniforms.uProgress, {
         value: active ? 1 : 0,
       })
 
+      /* @ts-ignore */
       gsap.to($mesh.current.material.uniforms.uRes.value, {
         x: active ? viewport.width : width,
         y: active ? viewport.height : height,

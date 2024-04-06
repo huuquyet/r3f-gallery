@@ -8,13 +8,7 @@ import { AgXToneMapping } from 'three'
 export default function Scene({ ...props }) {
   // Everything defined in here will persist between route changes, only children are swapped
   return (
-    <Canvas
-      {...props}
-      onCreated={(state) => {
-        state.gl.toneMapping = AgXToneMapping
-      }}
-    >
-      {/* @ts-ignore */}
+    <Canvas {...props} gl={{ toneMapping: AgXToneMapping, powerPreference: 'default' }}>
       <r3f.Out />
       <Preload all />
     </Canvas>

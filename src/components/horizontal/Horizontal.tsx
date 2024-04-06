@@ -1,26 +1,13 @@
 'use client'
 
 import { useTextureList } from '@/providers/TextureProvider'
-import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
+import { Image, Line, Scroll, ScrollControls, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef, useState } from 'react'
-import {
-  BufferGeometry,
-  Color,
-  type Group,
-  LineBasicMaterial,
-  type Mesh,
-  type Texture,
-  Vector3,
-} from 'three'
+import { Color, type Group, type Mesh, type Texture } from 'three'
 import { proxy, useSnapshot } from 'valtio'
 
-const material = new LineBasicMaterial({ color: 'white' })
-const geometry = new BufferGeometry().setFromPoints([
-  new Vector3(0, -0.5, 0),
-  new Vector3(0, 0.5, 0),
-])
 const state = proxy({
   clicked: null,
 })
@@ -44,10 +31,13 @@ function Minimap() {
   return (
     <group ref={ref}>
       {textures.map((texture, i) => (
-        <line
+        <Line
           key={texture.id}
-          geometry={geometry}
-          material={material}
+          color={'white'}
+          points={[
+            [0, -0.5, 0],
+            [0, 0.5, 0],
+          ]}
           position={[i * 0.06 - textures.length * 0.03, -viewport.height / 2 + 0.6, 0]}
         />
       ))}
@@ -68,6 +58,7 @@ function Item({
   const [hovered, hover] = useState(false)
 
   const click = () => {
+    /* @ts-ignore */
     state.clicked = index === clicked ? null : index
   }
   const over = () => hover(true)
@@ -80,7 +71,9 @@ function Item({
       0.15,
       delta
     )
+    /* @ts-ignore */
     ref.current.material.scale[0] = ref.current.scale.x
+    /* @ts-ignore */
     ref.current.material.scale[1] = ref.current.scale.y
     if (clicked !== null && index < clicked)
       easing.damp(ref.current.position, 'x', position[0] - 2, 0.15, delta)
@@ -96,6 +89,7 @@ function Item({
       delta
     )
     easing.dampC(
+      /* @ts-ignore */
       ref.current.material.color,
       hovered || clicked === index ? 'white' : '#aaa',
       hovered ? 0.3 : 0.15,

@@ -1,5 +1,3 @@
-'use client'
-
 import { MeshTransmissionMaterial } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { useControls } from 'leva'
