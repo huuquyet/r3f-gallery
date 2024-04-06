@@ -1,18 +1,28 @@
 'use client'
 
+import Loading from '@/loading'
 import dynamic from 'next/dynamic'
-import { Route, Switch, useLocation } from 'wouter'
+import { useParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default function Page() {
-  const [path] = useLocation()
-  const slug = path.slice(1, path.length)
-  const Component = dynamic(() => import(`@/components/${slug}`), { ssr: false })
+  const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
+    ssr: false,
+    loading: () => <Loading />,
+  })
+  const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), {
+    ssr: false,
+  })
+
+  const params = useParams()
+  const Component = dynamic(() => import(`@/components/${params.slug}`), { ssr: false })
 
   return (
-    <Switch>
-      <Route path={path}>
-        <Component />
-      </Route>
-    </Switch>
+      <View>
+        <Suspense fallback={<Loading />}>
+          <Component />
+          {params.slug !== 'cards' ? <Common /> : null}
+        </Suspense>
+      </View>
   )
 }

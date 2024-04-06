@@ -1,6 +1,7 @@
 'use client'
 
 import { useTextureList } from '@/providers/TextureProvider'
+import { useCursor } from '@react-three/drei'
 import { Billboard, Image, ScrollControls, Text, useScroll } from '@react-three/drei'
 import { type Euler, type Vector3, extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
@@ -22,6 +23,7 @@ function Scene({ position, ...props }: { position: Vector3 }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
+  useCursor(hovered)
   useFrame((state, delta) => {
     ref.current.rotation.y = -scroll.offset * (Math.PI * 2) // Rotate contents
     state.events.update() // Raycasts every frame rather than on pointer-move

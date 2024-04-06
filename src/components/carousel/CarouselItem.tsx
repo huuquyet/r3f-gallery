@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
 import type { Group, Texture } from 'three'
 import { Plane } from './Plane'
+import { useCursor } from '@react-three/drei'
 
 export const CarouselItem = ({
   index,
@@ -27,6 +28,7 @@ export const CarouselItem = ({
   const [isCloseActive, setCloseActive] = useState(false)
   const { viewport } = useThree()
   const timeoutID = useRef()
+  useCursor(hover)
 
   useEffect(() => {
     if (activePlane === index) {

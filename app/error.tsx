@@ -1,7 +1,5 @@
 'use client'
 
-import { Html } from '@react-three/drei'
-
 export default function GlobalError({
   error,
   reset,
@@ -10,13 +8,11 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <Html>
-      <div className="error">
-        <h2>Something went wrong!</h2>
-        <button type="button" onClick={() => reset()}>
-          Try again
-        </button>
-      </div>
-    </Html>
+    <div className="error">
+      <h2>Something went wrong!</h2>
+      <button type="button" onClick={() => reset()}>
+        Try again
+      </button>
+    </div>
   )
 }

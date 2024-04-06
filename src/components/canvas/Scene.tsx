@@ -3,7 +3,7 @@
 import { r3f } from '@/helpers/global'
 import { Preload } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import * as THREE from 'three'
+import { AgXToneMapping } from 'three'
 
 export default function Scene({ ...props }) {
   // Everything defined in here will persist between route changes, only children are swapped
@@ -11,7 +11,7 @@ export default function Scene({ ...props }) {
     <Canvas
       {...props}
       onCreated={(state) => {
-        state.gl.toneMapping = THREE.AgXToneMapping
+        state.gl.toneMapping = AgXToneMapping
       }}
     >
       {/* @ts-ignore */}

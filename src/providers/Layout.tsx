@@ -1,22 +1,16 @@
 'use client'
 
-import Loading from '@/loading'
-import { Canvas } from '@react-three/fiber'
-import { type ReactNode, Suspense, useRef } from 'react'
-import { Router } from 'wouter'
-import { useHashLocation } from 'wouter/use-hash-location'
-import TextureProvider from './TextureProvider'
+import dynamic from 'next/dynamic'
+import { type ReactNode, useRef } from 'react'
+const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLCanvasElement>(null!)
+  const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <Canvas ref={ref} className="wrapper">
-      <Suspense fallback={<Loading />}>
-        <Router hook={useHashLocation}>
-          <TextureProvider>{children}</TextureProvider>
-        </Router>
-      </Suspense>
-    </Canvas>
+    <div ref={ref} className="wrapper">
+      {children}
+      <Scene className="other" eventSource={ref} eventPrefix="client" />
+    </div>
   )
 }

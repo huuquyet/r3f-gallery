@@ -1,6 +1,7 @@
 'use client'
 
-import { Link, useLocation } from 'wouter'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const navItems: { label: string; slug?: string; link?: string }[] = [
   { label: 'Cards', slug: 'cards' },
@@ -10,7 +11,7 @@ const navItems: { label: string; slug?: string; link?: string }[] = [
 ]
 
 export default function Header() {
-  const [pathname] = useLocation()
+  const pathname = usePathname()
 
   return (
     <header className="header">
@@ -18,7 +19,7 @@ export default function Header() {
         {navItems.map(({ label, slug, link }) => (
           <li key={label}>
             {slug ? (
-              <Link to={`/${slug}`} className={pathname === `/${slug}` ? 'active' : undefined}>
+              <Link href={`/${slug}`} className={pathname === `/${slug}` ? 'active' : undefined}>
                 {label}
               </Link>
             ) : (

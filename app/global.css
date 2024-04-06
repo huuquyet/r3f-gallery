@@ -38,6 +38,15 @@
     overflow: auto;
     touch-action: auto;
   }
+  
+  .other {
+    position: 'fixed';
+    top: 0;
+    left: 0;
+    width: '100vw';
+    height: '100vh';
+    pointer-events: 'none';
+  }
 
   .top {
     height: 100%;
@@ -85,7 +94,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    height: 100vh;
     flex-direction: column;
   }
 
