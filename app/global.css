@@ -26,7 +26,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
-    /* overscroll-behavior: none; */
+    overscroll-behavior: none;
     height: 100%;
     user-select: none;
   }
@@ -45,13 +45,7 @@
     left: 0;
     width: '100vw';
     height: '100vh';
-    pointer-events: 'none';
-  }
-
-  .top {
-    height: 100%;
-    width: 100%;
-    transform: none !important;
+    pointer-events: auto !important;
   }
 
   .header {

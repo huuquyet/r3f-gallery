@@ -18,11 +18,11 @@ export default function Page() {
   const Component = dynamic(() => import(`@/components/${params.slug}`), { ssr: false })
 
   return (
-      <View>
-        <Suspense fallback={<Loading />}>
-          <Component />
-          {params.slug !== 'cards' ? <Common /> : null}
-        </Suspense>
-      </View>
+    <View>
+      <Suspense fallback={<Loading />}>
+        <Component />
+        {params.slug !== 'cards' ? <Common /> : null}
+      </Suspense>
+    </View>
   )
 }

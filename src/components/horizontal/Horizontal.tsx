@@ -1,7 +1,6 @@
 'use client'
 
 import { useTextureList } from '@/providers/TextureProvider'
-import { useCursor } from '@react-three/drei'
 import { Image, Scroll, ScrollControls, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { easing } from 'maath'
@@ -67,7 +66,7 @@ function Item({
   const scroll = useScroll()
   const { clicked } = useSnapshot(state)
   const [hovered, hover] = useState(false)
-  useCursor(hovered)
+
   const click = () => {
     state.clicked = index === clicked ? null : index
   }
@@ -116,7 +115,7 @@ function Item({
   )
 }
 
-export default function Horizontal({ w = 0.7, gap = 0.15 }: { w: number; gap: number }) {
+export default function Horizontal({ w = 0.7, gap = 0.15 }: { w?: number; gap?: number }) {
   const { textures } = useTextureList()
   const { viewport } = useThree()
   const xW = w + gap
