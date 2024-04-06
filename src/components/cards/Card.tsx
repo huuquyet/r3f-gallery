@@ -2,7 +2,7 @@ import { Image } from '@react-three/drei'
 import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef } from 'react'
-import type { Mesh, Texture } from 'three'
+import { DoubleSide, type Mesh, type Texture } from 'three'
 
 export const Card = ({
   texture,

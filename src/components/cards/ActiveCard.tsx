@@ -1,9 +1,12 @@
 import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Image, Text } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { easing } from 'maath'
-import { useLayoutEffect, useRef } from 'react'
+import { extend, useFrame } from '@react-three/fiber'
+import { easing, geometry } from 'maath'
+import { generate } from 'random-words'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import type { Mesh } from 'three'
+
+extend(geometry)
 
 export const ActiveCard = ({ hovered, ...props }: { hovered: any }) => {
   const { textures } = useTextureList()
