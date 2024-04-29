@@ -1,6 +1,6 @@
 'use client'
 
-import Loading from '@/loading'
+import Loading from '@/app/loading'
 import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
 import { Suspense } from 'react'

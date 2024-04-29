@@ -1,7 +1,7 @@
 'use client'
 
+import Loading from '@/app/loading'
 import { Three } from '@/helpers/components/Three'
-import Loading from '@/loading'
 import TextureProvider from '@/providers/TextureProvider'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { type ReactNode, Suspense, forwardRef, useImperativeHandle, useRef } from 'react'
