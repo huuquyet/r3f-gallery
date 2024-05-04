@@ -11,16 +11,12 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   disable: process.env.NODE_ENV === 'development',
 })
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/cards',
-        permanent: true,
-      },
-    ]
-  },
+  // (Optional) Export as a static site
+  // See https://nextjs.org/docs/pages/building-your-application/deploying/static-exports#configuration
+  output: 'export', // Outputs a Single-Page Application (SPA).
+  distDir: './dist', // Changes the build output directory to `./dist/`.
   typescript: {
     ignoreBuildErrors: false, // true to ignore ts
   },

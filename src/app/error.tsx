@@ -8,7 +8,7 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <div className="error">
+    <div className="flex flex-col h-screen justify-center items-center">
       <h2>Something went wrong!</h2>
       <button type="button" onClick={() => reset()}>
         Try again

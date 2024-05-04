@@ -1,3 +1,5 @@
+'use client'
+
 import { useTextureList } from '@/providers/TextureProvider'
 import { Line, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'

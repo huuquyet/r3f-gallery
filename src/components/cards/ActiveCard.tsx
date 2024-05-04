@@ -1,3 +1,5 @@
+'use client'
+
 import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Image, Text } from '@react-three/drei'
 import { extend, useFrame } from '@react-three/fiber'

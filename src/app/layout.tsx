@@ -1,9 +1,9 @@
-import Layout from '@/providers/Layout'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import './global.css'
-import Header from './header'
+import Nav from './nav'
 
 const APP_NAME = 'R3F Gallery'
 const APP_DEFAULT_TITLE = 'Awesome Gallery using Next.js + React Three Fiber'
@@ -11,6 +11,27 @@ const APP_TITLE_TEMPLATE = '%s - Awesome Gallery'
 const APP_DESCRIPTION = 'Awesome Gallery using Next.js + React Three Fiber'
 const APP_URL = 'https://r3f-gallery-huuquyet.vercel.app/'
 const TWITTER = '@HuuQuyetNg'
+
+const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" className="antialiased">
+      {/*
+        <head /> will contain the components returned by the nearest parent
+        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
+      */}
+      <head />
+      <body>
+        <Nav />
+        {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
+        {children}
+        <Scene className="scene" />
+        <Analytics />
+      </body>
+    </html>
+  )
+}
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -51,22 +72,4 @@ export const metadata: Metadata = {
     site: TWITTER,
   },
   keywords: ['Next.js', 'React Three Fiber', 'Three.js', 'Gallery'],
-}
-
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en" className="antialiased">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>
-        <Header />
-        {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
-        <Layout>{children}</Layout>
-        <Analytics />
-      </body>
-    </html>
-  )
 }

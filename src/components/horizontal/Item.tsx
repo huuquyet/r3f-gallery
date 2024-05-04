@@ -1,3 +1,5 @@
+'use client'
+
 import { Image, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { easing } from 'maath'

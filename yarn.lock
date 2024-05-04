@@ -2203,6 +2203,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@studio-freight/lenis@npm:^1.0.42":
+  version: 1.0.42
+  resolution: "@studio-freight/lenis@npm:1.0.42"
+  checksum: 10/fa52db25a4e9e6563d87b3d78285bc8b487fc0f6e487727864f6d10de42c2b09181e271e82af30d5768b0eba0f9e8b7ae293dd5ffdf655636bef20403ca47c37
+  languageName: node
+  linkType: hard
+
 "@surma/rollup-plugin-off-main-thread@npm:^2.2.3":
   version: 2.2.3
   resolution: "@surma/rollup-plugin-off-main-thread@npm:2.2.3"
@@ -5412,6 +5419,7 @@ __metadata:
     "@next/bundle-analyzer": "npm:^14.2.3"
     "@react-three/drei": "npm:^9.105.5"
     "@react-three/fiber": "npm:^8.16.2"
+    "@studio-freight/lenis": "npm:^1.0.42"
     "@types/node": "npm:^20.12.7"
     "@types/react": "npm:^18.3.1"
     "@types/three": "npm:^0.164.0"
@@ -5429,7 +5437,6 @@ __metadata:
     react-use: "npm:^17.5.0"
     tailwindcss: "npm:^3.4.3"
     three: "npm:^0.164.1"
-    tunnel-rat: "npm:^0.1.2"
     typescript: "npm:^5.4.5"
     url-loader: "npm:^4.1.1"
     valtio: "npm:^1.13.2"
