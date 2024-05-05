@@ -14,11 +14,11 @@ export default function Page({ params }: { params: { type: string } }) {
   const Component = dynamic(() => import(`@/components/${type}`), { ssr: false })
 
   return (
-    <Suspense fallback={null}>
-      <View>
+    <View>
+      <Suspense fallback={null}>
         <Component />
         {type !== 'cards' ? <Common /> : null}
-      </View>
-    </Suspense>
+      </Suspense>
+    </View>
   )
 }

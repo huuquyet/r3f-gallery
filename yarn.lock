@@ -2056,9 +2056,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:^9.105.5":
-  version: 9.105.5
-  resolution: "@react-three/drei@npm:9.105.5"
+"@react-three/drei@npm:^9.105.6":
+  version: 9.105.6
+  resolution: "@react-three/drei@npm:9.105.6"
   dependencies:
     "@babel/runtime": "npm:^7.11.2"
     "@mediapipe/tasks-vision": "npm:0.10.8"
@@ -2091,13 +2091,13 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/301814ef8d50933ab040403687d014246e551e6fd1a058a8aa1766a274d6adf47323989174d06795f64aa52cdd4bd5eecdfb4b4bc6cbba7d52e2ec967943d4d2
+  checksum: 10/48a1122f6b6cb06dbb4856f1b94151302c8911cbeaeaecb5768dde77dfe3b12e6d58ead5e5b4043239f859e8be2fe502003e4c635432a85e06347336070b21b2
   languageName: node
   linkType: hard
 
-"@react-three/fiber@npm:^8.16.2":
-  version: 8.16.2
-  resolution: "@react-three/fiber@npm:8.16.2"
+"@react-three/fiber@npm:^8.16.3":
+  version: 8.16.3
+  resolution: "@react-three/fiber@npm:8.16.3"
   dependencies:
     "@babel/runtime": "npm:^7.17.8"
     "@types/react-reconciler": "npm:^0.26.7"
@@ -2132,7 +2132,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 10/3b8dbd64b35f12e46b15b2dc103af209e99695e3f62b2422ebdeed125568b410728b5fc80a3731081236a43e88950b0f67f4e95ffa1cb236e916331c411306b4
+  checksum: 10/5aae61cfcd408e2e84c6cde9295d352524c20d5184c6a98948880109155def86b0c04cebe5d0c908f00ce109793d421c08dd49605b579668add284c6569558af
   languageName: node
   linkType: hard
 
@@ -2291,12 +2291,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.7":
-  version: 20.12.7
-  resolution: "@types/node@npm:20.12.7"
+"@types/node@npm:*, @types/node@npm:^20.12.8":
+  version: 20.12.8
+  resolution: "@types/node@npm:20.12.8"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/b4a28a3b593a9bdca5650880b6a9acef46911d58cf7cfa57268f048e9a7157a7c3196421b96cea576850ddb732e3b54bc982c8eb5e1e5ef0635d4424c2fce801
+  checksum: 10/1feab4c8cb08588eea10811ed4d02485a5cde47fdf92e7b3193fc9f8ee39ea556f6e3124dc6d5378354466ed5f7e5fbe5e20f625908de40ea37560368a50f72c
   languageName: node
   linkType: hard
 
@@ -5417,10 +5417,10 @@ __metadata:
   dependencies:
     "@ducanh2912/next-pwa": "npm:^10.2.6"
     "@next/bundle-analyzer": "npm:^14.2.3"
-    "@react-three/drei": "npm:^9.105.5"
-    "@react-three/fiber": "npm:^8.16.2"
+    "@react-three/drei": "npm:^9.105.6"
+    "@react-three/fiber": "npm:^8.16.3"
     "@studio-freight/lenis": "npm:^1.0.42"
-    "@types/node": "npm:^20.12.7"
+    "@types/node": "npm:^20.12.8"
     "@types/react": "npm:^18.3.1"
     "@types/three": "npm:^0.164.0"
     "@vercel/analytics": "npm:^1.2.2"

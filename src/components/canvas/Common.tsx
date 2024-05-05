@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 
 export default function Common({ color, orbit }: { color?: string; orbit?: boolean }) {
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={null}>
       {color && <color attach="background" args={[color]} />}
       {/* <ambientLight intensity={0.5} />
     <pointLight position={[20, 30, 10]} intensity={2} decay={0.2} />
