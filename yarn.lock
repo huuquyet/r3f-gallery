@@ -5437,6 +5437,7 @@ __metadata:
     react-use: "npm:^17.5.0"
     tailwindcss: "npm:^3.4.3"
     three: "npm:^0.164.1"
+    tunnel-rat: "npm:^0.1.2"
     typescript: "npm:^5.4.5"
     url-loader: "npm:^4.1.1"
     valtio: "npm:^1.13.2"

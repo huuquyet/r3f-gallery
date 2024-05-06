@@ -12,7 +12,7 @@ const APP_DESCRIPTION = 'Awesome Gallery using Next.js + React Three Fiber'
 const APP_URL = 'https://r3f-gallery-huuquyet.vercel.app/'
 const TWITTER = '@HuuQuyetNg'
 
-const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
+const Layout = dynamic(() => import('@/providers/Layout'), { ssr: false })
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,8 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Nav />
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
-        {children}
-        <Scene className="scene" />
+        <Layout>{children}</Layout>
         <Analytics />
       </body>
     </html>
