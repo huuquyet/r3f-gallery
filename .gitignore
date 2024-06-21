@@ -64,6 +64,7 @@ thumbs.db
 
 # IDE
 .idea
+.vscode
 
 # pwa
 /public/sw.js*
