@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Group, Texture } from 'three'
 import { Plane } from './Plane'
 
-export const CarouselItem = ({
+export function CarouselItem({
   index,
   width,
   height,
@@ -20,7 +20,7 @@ export const CarouselItem = ({
   texture: Texture
   activePlane: any
   setActivePlane: any
-}) => {
+}) {
   const $root = useRef<Group>(null!)
   const [hover, setHover] = useState(false)
   const [isActive, setIsActive] = useState(false)

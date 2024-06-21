@@ -13,9 +13,9 @@ const TextureContext = createContext<TextureContextType | null>(null)
 
 export default function TextureProvider({ children, ...props }: { children?: ReactNode }) {
   const value = useContext(TextureContext)
-  // if (value) {
-  //   return <Fragment {...props}>{children}</Fragment>
-  // }
+  if (value) {
+    return <Fragment {...props}>{children}</Fragment>
+  }
 
   const [textures, setTextures] = useState<Texture[]>([])
   const urls: string[] = []

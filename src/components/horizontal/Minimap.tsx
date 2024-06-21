@@ -7,7 +7,7 @@ import { easing } from 'maath'
 import { useRef } from 'react'
 import type { Group } from 'three'
 
-export const Minimap = () => {
+export function Minimap() {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const { height } = useThree((state) => state.viewport)

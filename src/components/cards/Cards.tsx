@@ -6,7 +6,7 @@ import type { Vector3 } from '@react-three/fiber'
 import { useState } from 'react'
 import { Card } from './Card'
 
-export const Cards = ({
+export function Cards({
   category,
   from = 0,
   len = Math.PI * 2,
@@ -22,7 +22,7 @@ export const Cards = ({
   onPointerOver: any
   onPointerOut: any
   position?: Vector3
-}) => {
+}) {
   const { textures } = useTextureList()
   const [hovered, hover] = useState(null)
   const amount = Math.round(len * 26)

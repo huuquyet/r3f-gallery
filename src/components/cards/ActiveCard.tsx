@@ -10,7 +10,7 @@ import type { Mesh } from 'three'
 
 extend(geometry)
 
-export const ActiveCard = ({ hovered, ...props }: { hovered: any }) => {
+export function ActiveCard({ hovered, ...props }: { hovered: any }) {
   const { textures } = useTextureList()
   const ref = useRef<Mesh>(null!)
   /* @ts-ignore */

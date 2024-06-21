@@ -5,13 +5,13 @@ import gsap from 'gsap'
 import { useEffect, useMemo, useRef } from 'react'
 import type { Mesh, Texture } from 'three'
 
-export const Plane = ({
+export function Plane({
   texture,
   width,
   height,
   active,
   ...props
-}: { texture: Texture; width: number; height: number; active: boolean }) => {
+}: { texture: Texture; width: number; height: number; active: boolean }) {
   const $mesh = useRef<Mesh>(null!)
   const { viewport } = useThree()
 

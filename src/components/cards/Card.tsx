@@ -6,7 +6,7 @@ import { easing } from 'maath'
 import { useRef } from 'react'
 import { DoubleSide, type Mesh, type Texture } from 'three'
 
-export const Card = ({
+export function Card({
   texture,
   active,
   hovered,
@@ -19,7 +19,7 @@ export const Card = ({
   rotation: Euler
   onPointerOver: any
   onPointerOut: any
-}) => {
+}) {
   const ref = useRef<Mesh>(null!)
   useFrame((state, delta) => {
     const f = hovered ? 1.4 : active ? 1.25 : 1

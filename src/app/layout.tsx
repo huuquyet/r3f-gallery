@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     },
     description: APP_DESCRIPTION,
     url: APP_URL,
-    images: ['/icon/share.png'],
+    images: ['/icon/vercel.svg'],
   },
   twitter: {
     card: 'summary',

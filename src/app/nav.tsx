@@ -22,7 +22,7 @@ export default function Nav() {
               {label}
             </Link>
           ) : (
-            <Link href={link} rel="noopener" target="_blank">
+            <Link href={link!} rel="noopener" target="_blank">
               {label}
             </Link>
           )}

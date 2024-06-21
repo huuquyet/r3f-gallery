@@ -1,7 +1,7 @@
 'use client'
 
+import { getPiramidalIndex } from '@/helpers/utils'
 import { useTextureList } from '@/providers/TextureProvider'
-import { getPiramidalIndex } from '@/utils'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'

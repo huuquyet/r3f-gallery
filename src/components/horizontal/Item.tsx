@@ -11,13 +11,13 @@ const state = proxy({
   clicked: null,
 })
 
-export const Item = ({
+export function Item({
   index,
   position,
   scale,
   c = new Color(),
   ...props
-}: { index: number; position: any; scale: any; c?: Color; texture: Texture; length: number }) => {
+}: { index: number; position: any; scale: any; c?: Color; texture: Texture; length: number }) {
   const ref = useRef<Mesh>(null!)
   const scroll = useScroll()
   const { clicked } = useSnapshot(state)
