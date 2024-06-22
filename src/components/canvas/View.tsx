@@ -6,7 +6,7 @@ import { OrbitControls } from '@react-three/drei'
 import { type ReactNode, forwardRef, useImperativeHandle, useRef } from 'react'
 
 const View = forwardRef(
-  ({ children, orbit, ...props }: { children?: ReactNode; orbit: boolean }, ref: any) => {
+  ({ children, orbit, ...props }: { children?: ReactNode; orbit?: boolean }, ref: any) => {
     const localRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => localRef.current)
 

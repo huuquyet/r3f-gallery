@@ -1,5 +1,1 @@
-'use client'
-
-import { Carousel } from './Carousel'
-
-export default Carousel
+export { default } from './Carousel'

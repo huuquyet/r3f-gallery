@@ -4,7 +4,7 @@ import { useThree } from '@react-three/fiber'
 import { Item } from './Item'
 import { Minimap } from './Minimap'
 
-export function Horizontal({ w = 0.7, gap = 0.15 }: { w?: number; gap?: number }) {
+export default function Horizontal({ w = 0.7, gap = 0.15 }: { w?: number; gap?: number }) {
   const { textures } = useTextureList()
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap

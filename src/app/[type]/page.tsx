@@ -13,7 +13,7 @@ export default function Page() {
   const Component = dynamic(() => import(`@/components/${params.type}`), { ssr: false })
 
   return (
-    <View orbit={params.type === 'gallery'}>
+    <View>
       <Suspense fallback={<Loading />}>
         <Component />
         {params.type !== 'gallery' ? <Common /> : null}

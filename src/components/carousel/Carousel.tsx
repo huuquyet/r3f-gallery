@@ -28,7 +28,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-export function Carousel() {
+export default function Carousel() {
   const [$root, setRoot] = useState()
   const $post = useRef()
 

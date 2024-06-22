@@ -6,15 +6,15 @@ import type { Group } from 'three'
 import { ActiveCard } from './ActiveCard'
 import { Cards } from './Cards'
 
-export function Gallery() {
+export default function Gallery() {
   return (
     <ScrollControls pages={4} infinite>
-      <MyScene position={[0, 1.5, 0]} />
+      <Scene position={[0, 1.5, 0]} />
     </ScrollControls>
   )
 }
 
-function MyScene({ position, ...props }: { position: Vector3 }) {
+function Scene({ position, ...props }: { position: Vector3 }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)
