@@ -1,11 +1,11 @@
 'use client'
 
-import { Card } from '@/components/cards'
 import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Text } from '@react-three/drei'
 import type { Vector3 } from '@react-three/fiber'
 import { useState } from 'react'
 import type { Texture } from 'three'
+import { Card } from './Card'
 
 export function Cards({
   category,
@@ -14,11 +14,12 @@ export function Cards({
   radius = 5.25,
   onPointerOver,
   onPointerOut,
+  position,
   ...props
 }: {
   category: string
   from: number
-  len: number
+  len?: number
   radius?: number
   onPointerOver: any
   onPointerOut: any

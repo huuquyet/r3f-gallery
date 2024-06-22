@@ -6,7 +6,7 @@ const View = dynamic(() => import('@/components/canvas/View'), { ssr: false, loa
 const Common = dynamic(() => import('@/components/canvas/Common'), { ssr: false })
 
 export function generateStaticParams() {
-  return [{ type: 'cards' }, { type: 'carousel' }, { type: 'horizontal' }]
+  return [{ type: 'gallery' }, { type: 'carousel' }, { type: 'horizontal' }]
 }
 
 export default function Page({ params }: { params: { type: string } }) {
@@ -14,10 +14,10 @@ export default function Page({ params }: { params: { type: string } }) {
   const Component = dynamic(() => import(`@/components/${type}`), { ssr: false })
 
   return (
-    <View orbit={type !== 'horizontal'}>
+    <View orbit={type === 'gallery'}>
       <Suspense fallback={<Loading />}>
         <Component />
-        {type !== 'cards' ? <Common /> : null}
+        {type !== 'gallery' ? <Common /> : null}
       </Suspense>
     </View>
   )

@@ -1,21 +1,22 @@
 'use client'
 
-import { ActiveCard, Cards } from '@/components/cards'
 import { ScrollControls, useScroll } from '@react-three/drei'
 import { type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useRef, useState } from 'react'
 import type { Group } from 'three'
+import { ActiveCard } from './ActiveCard'
+import { Cards } from './Cards'
 
-export default function Gallery() {
+export function Gallery() {
   return (
     <ScrollControls pages={4} infinite>
-      <Scene position={[0, 1.5, 0]} />
+      <MyScene position={[0, 1.5, 0]} />
     </ScrollControls>
   )
 }
 
-function Scene({ position, ...props }: { position: Vector3 }) {
+function MyScene({ position, ...props }: { position: Vector3 }) {
   const ref = useRef<Group>(null!)
   const scroll = useScroll()
   const [hovered, hover] = useState(null)

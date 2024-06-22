@@ -1,4 +1,5 @@
-export { default } from './Carousel'
-export * from './CarouselItem'
-export * from './Plane'
-export * from './PostProcessing'
+'use client'
+
+import { Carousel } from './Carousel'
+
+export default Carousel

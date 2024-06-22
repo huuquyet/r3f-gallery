@@ -13,16 +13,14 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "useKeyWithClickEvents": "off"
+        "useKeyWithClickEvents": "off",
+        "noSvgWithoutTitle": "off"
       },
       "complexity": {
         "noUselessFragments": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off"
-      },
-      "performance": {
-        "noAccumulatingSpread": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"

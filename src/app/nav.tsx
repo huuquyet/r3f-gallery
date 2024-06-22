@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const navItems: { label: string; type?: string; link?: string }[] = [
-  { label: 'Cards', type: 'cards' },
+  { label: 'Gallery', type: 'gallery' },
   { label: 'Carousel', type: 'carousel' },
   { label: 'Horizontal', type: 'horizontal' },
   { label: 'Github', link: 'https://github.com/huuquyet/r3f-gallery' },

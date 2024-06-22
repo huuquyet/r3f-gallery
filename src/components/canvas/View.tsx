@@ -14,10 +14,8 @@ const View = forwardRef(
       <>
         <div ref={localRef} {...props} />
         <Three>
-          <TextureProvider>
-            {children}
-            {orbit && <OrbitControls />}
-          </TextureProvider>
+          <TextureProvider>{children}</TextureProvider>
+          {orbit && <OrbitControls />}
         </Three>
       </>
     )
