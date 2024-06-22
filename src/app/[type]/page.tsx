@@ -14,8 +14,8 @@ export default function Page({ params }: { params: { type: string } }) {
   const Component = dynamic(() => import(`@/components/${type}`), { ssr: false })
 
   return (
-    <View orbit={type === 'cards'}>
-      <Suspense fallback={null}>
+    <View orbit={type !== 'horizontal'}>
+      <Suspense fallback={<Loading />}>
         <Component />
         {type !== 'cards' ? <Common /> : null}
       </Suspense>

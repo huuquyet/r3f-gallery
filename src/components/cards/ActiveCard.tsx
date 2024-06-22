@@ -6,7 +6,7 @@ import { extend, useFrame } from '@react-three/fiber'
 import { easing, geometry } from 'maath'
 import { generate } from 'random-words'
 import { useLayoutEffect, useMemo, useRef } from 'react'
-import type { Mesh } from 'three'
+import type { Mesh, Texture } from 'three'
 
 extend(geometry)
 
@@ -24,7 +24,7 @@ export function ActiveCard({ hovered, ...props }: { hovered: any }) {
     /* @ts-ignore */
     easing.damp(ref.current.material, 'opacity', hovered !== null, 0.3, delta)
   })
-  const texture = textures.at(Math.floor(hovered % textures.length))!
+  const texture = textures.at(Math.floor(hovered % textures.length)) as Texture
 
   return (
     <Billboard {...props}>

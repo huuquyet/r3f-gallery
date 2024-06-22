@@ -1,10 +1,11 @@
 'use client'
 
+import { Card } from '@/components/cards'
 import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Text } from '@react-three/drei'
 import type { Vector3 } from '@react-three/fiber'
 import { useState } from 'react'
-import { Card } from './Card'
+import type { Texture } from 'three'
 
 export function Cards({
   category,
@@ -43,7 +44,7 @@ export function Cards({
       </Billboard>
       {Array.from({ length: amount - 3 /* minus 3 images at the end, creates a gap */ }, (_, i) => {
         const angle = from + (i / amount) * len
-        const texture = textures.at(Math.floor(i % textures.length))!
+        const texture = textures.at(Math.floor(i % textures.length)) as Texture
 
         return (
           <Card

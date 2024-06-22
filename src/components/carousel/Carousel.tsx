@@ -1,5 +1,6 @@
 'use client'
 
+import { CarouselItem, PostProcessing } from '@/components/carousel'
 import { getPiramidalIndex } from '@/helpers/utils'
 import { useTextureList } from '@/providers/TextureProvider'
 import { useFrame, useThree } from '@react-three/fiber'
@@ -7,8 +8,6 @@ import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
 import { MathUtils } from 'three'
-import { CarouselItem } from './CarouselItem'
-import { PostProcessing } from './PostProcessing'
 
 /*------------------------------
 Plane Settings

@@ -3,8 +3,8 @@
   "description": "Next.js React Three Fiber",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "analyze": "ANALYZE=true bunx next build",
     "build": "bunx next build",
     "clean": "git clean -xdf",
     "dev": "bunx next dev",
@@ -28,8 +28,7 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.4",
-    "@types/node": "^20.14.7",
+    "@types/bun": "^1.1.5",
     "@types/react": "^18.3.3",
     "@types/three": "^0.165.0",
     "autoprefixer": "^10.4.19",

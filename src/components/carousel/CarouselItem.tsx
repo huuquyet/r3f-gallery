@@ -1,10 +1,10 @@
 'use client'
 
+import { Plane } from '@/components/carousel'
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
 import type { Group, Texture } from 'three'
-import { Plane } from './Plane'
 
 export function CarouselItem({
   index,

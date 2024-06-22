@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
   mode: 'jit',
   content: ['./src/**/*.{js,ts,jsx,tsx}'], // remove unused styles in production
   darkMode: 'media', // or 'media' or 'class'
@@ -10,3 +12,5 @@ module.exports = {
   },
   plugins: [],
 }
+
+export default config

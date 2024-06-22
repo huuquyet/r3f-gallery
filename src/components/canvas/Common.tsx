@@ -1,11 +1,12 @@
 'use client'
 
+import Loading from '@/app/loading'
 import { PerspectiveCamera } from '@react-three/drei'
 import { Suspense } from 'react'
 
 export default function Common({ color }: { color?: string }) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loading />}>
       {color && <color attach="background" args={[color]} />}
       {/* <ambientLight intensity={0.5} />
     <pointLight position={[20, 30, 10]} intensity={2} decay={0.2} />
