@@ -1,5 +1,3 @@
-'use client'
-
 import { useTextureList } from '@/providers/TextureProvider'
 import { Scroll, ScrollControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'

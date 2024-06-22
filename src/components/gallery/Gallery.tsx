@@ -1,5 +1,3 @@
-'use client'
-
 import { ScrollControls, useScroll } from '@react-three/drei'
 import { type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'

@@ -1,5 +1,3 @@
-'use client'
-
 import { Image } from '@react-three/drei'
 import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'

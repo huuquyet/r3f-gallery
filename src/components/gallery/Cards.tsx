@@ -1,5 +1,3 @@
-'use client'
-
 import { useTextureList } from '@/providers/TextureProvider'
 import { Billboard, Text } from '@react-three/drei'
 import type { Vector3 } from '@react-three/fiber'

@@ -1,5 +1,3 @@
-'use client'
-
 import { getPiramidalIndex } from '@/helpers/utils'
 import { useTextureList } from '@/providers/TextureProvider'
 import { useFrame, useThree } from '@react-three/fiber'
