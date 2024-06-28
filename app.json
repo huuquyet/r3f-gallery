@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Awesome Gallery",
+    "slug": "r3f-gallery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "/icons/logo.svg",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "/icons/logo.svg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "/icons/logo.svg",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router", "expo-asset"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

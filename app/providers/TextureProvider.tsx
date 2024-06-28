@@ -1,7 +1,12 @@
-'use client'
-
 import { useTexture } from '@react-three/drei'
-import { Fragment, type ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import {
+  Fragment,
+  type PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import type { Texture } from 'three'
 
 interface TextureContextType {
@@ -11,7 +16,7 @@ interface TextureContextType {
 
 const TextureContext = createContext<TextureContextType | null>(null)
 
-export default function TextureProvider({ children, ...props }: { children?: ReactNode }) {
+export default function TextureProvider({ children, ...props }: PropsWithChildren) {
   const value = useContext(TextureContext)
   if (value) {
     return <Fragment {...props}>{children}</Fragment>

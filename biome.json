@@ -1,12 +1,21 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
   "organizeImports": {
     "enabled": true
   },
 
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["./node_modules", "./.next", "/.vercel", "./dist", "./types", "./public"]
+    "ignore": [
+      "./node_modules",
+      "./.expo",
+      "./.tamagui",
+      "./.vercel",
+      "./dist",
+      "./public",
+      "./android",
+      "./ios"
+    ]
   },
   "linter": {
     "enabled": true,
